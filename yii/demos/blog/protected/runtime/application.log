@@ -1,0 +1,8 @@
+2015/04/12 09:45:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/create".' in E:\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 E:\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('user/create')
+#1 E:\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#2 E:\yii\demos\blog\index.php(11): CApplication->run()
+#3 {main}
+REQUEST_URI=/index.php/user/create
+---

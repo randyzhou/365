@@ -1,0 +1,277 @@
+{yun:}if $usertype=="1"{/yun}  
+<div class="login_ok">
+<div class="login_ok_user">
+<div class="login_ok_user_photo"><img width="60" height="60" src="{yun:}$member.photo{/yun}" onerror="showImgDelay(this,'{yun:}$config.sy_ossurl{/yun}/{yun:}$config.sy_member_icon{/yun}',2);"> </div>
+<div class="login_ok_username">hi , {yun:}$username{/yun}</div>
+<div class="login_ok_hi">欢迎回来</div>
+</div>
+<div class="login_ok_n_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=invite"><span class="login_ok_n">{yun:}if $yqnum==""{/yun}0{yun:}else{/yun}{yun:}$yqnum{/yun}{yun:}/if{/yun}</span><div class="login_ok_name">面试通知</div></a></div>
+<div class="login_ok_n_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=favorite"><span class="login_ok_n">{yun:}if $member.fav_jobnum<1{/yun}0{yun:}else{/yun}{yun:}$member.fav_jobnum{/yun}{yun:}/if{/yun}</span><div class="login_ok_name">收藏记录</div></a></div>
+<div class="login_ok_n_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=look"><span class="login_ok_n">{yun:}$lookNum{/yun} </span><div class="login_ok_name">企业看过</div></a></div>
+<div class="login_ok_mune"><div class="login_ok_mune_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=resume"><i class="login_ok_mune_icon"></i>我的简历</a></div><div class="login_ok_mune_list"><a {yun:}if $config.user_number gt $expectnum || $config.user_number==''{/yun}href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=expect&act=add"{yun:}else{/yun}href="javascript:void(0)" onclick="layer.msg('你的简历数已经达到系统设置的简历数了',2,8);return false;"{yun:}/if{/yun}><i class="login_ok_mune_icon login_ok_mune_icon_cj"></i>创建简历</a></div><div class="login_ok_mune_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=atn"><i class="login_ok_mune_icon login_ok_mune_icon_gz"></i>关注记录</a></div>
+<div class="login_ok_member"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php" class="login_ok_member_bth">管理中心</a><a href="javascript:void(0);" onclick="logout('{yun:}url c=logout{/yun}');" class="login_ok_member_bthtc">退出登录</a></div>
+</div>
+{yun:}elseif $usertype=="2"{/yun}
+<div class="login_ok">
+<div class="login_ok_user">
+<div class="login_ok_user_photo"><img width="60" height="60" src="{yun:}$company.logo{/yun}"  onerror="showImgDelay(this,'{yun:}$config.sy_ossurl{/yun}/{yun:}$config.sy_unit_icon{/yun}',2);"> </div>
+<div class="login_ok_username">hi , {yun:}$username{/yun}</div>
+<div class="login_ok_hi">欢迎登录</div>
+</div>
+<div class="login_ok_n_list">	<a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=hr"><span class="login_ok_n">{yun:}$company.sq_job{/yun}</span><div class="login_ok_name">收到简历</div></a></div>
+<div class="login_ok_n_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=msg"><span class="login_ok_n">{yun:}$company.msgnum{/yun}</span><div class="login_ok_name">求职咨询</div></a></div>
+<div class="login_ok_n_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=look_job"><span class="login_ok_n">{yun:}$company.look_jobnum{/yun}</span><div class="login_ok_name">谁看过我</div></a></div>
+<div class="login_ok_mune"><div class="login_ok_mune_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=job&w=1"><i class="login_ok_mune_icon"></i>职位管理</a></div>
+<div class="login_ok_mune_list"><a href="javascript:void(0)"  onclick="addJobIndex('{yun:}$addjobnum{/yun}','{yun:}$config.integral_job{/yun}','{yun:}$config.com_integral_online{/yun}','{yun:}$config.integral_proportion{/yun}');return false;"><i class="login_ok_mune_icon login_ok_mune_icon_cj"></i>发布职位</a></div><div class="login_ok_mune_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=attention_me"><i class="login_ok_mune_icon login_ok_mune_icon_gz"></i>关注记录</a></div>
+<div class="login_ok_member"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php" class="login_ok_member_bth">管理中心</a><a href="javascript:void(0);" onclick="logout('{yun:}url c=logout{/yun}');" class="login_ok_member_bthtc">退出登录</a></div>
+</div>
+
+{yun:}elseif $usertype=="3"{/yun}
+<div class="login_ok">
+<div class="login_ok_user">
+<div class="login_ok_user_photo"><img width="60" height="60"  src="{yun:}$lt.photo{/yun}" onerror="showImgDelay(this,'{yun:}$config.sy_ossurl{/yun}/{yun:}$config.sy_lt_icon{/yun}',2);"> </div>
+<div class="login_ok_username">hi , {yun:}$username{/yun}</div>
+<div class="login_ok_hi">欢迎登录</div>
+</div>
+<div class="login_ok_n_listbox">
+<div class="login_ok_n_list">	<a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=entrust_resume"><span class="login_ok_n">{yun:}$lt.entrust{/yun}</span><div class="login_ok_name">委托简历</div></a></div>
+<div class="login_ok_n_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=down_resume"><span class="login_ok_n">{yun:}$lt.lt_status2{/yun}</span><div class="login_ok_name">下载简历</div></a></div>
+</div>
+<div class="login_ok_mune">
+<div class="login_ok_mune_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=job&s=1"><i class="login_ok_mune_icon"></i>职位管理</a></div><div class="login_ok_mune_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=search_resume"><i class="login_ok_mune_icon login_ok_mune_icon_cj"></i>搜索简历</a></div>
+<div class="login_ok_mune_list" ><a href="javascript:void(0)"  onclick="addJobIndex('{yun:}$addjobnum{/yun}','{yun:}$config.integral_job{/yun}','{yun:}$config.com_integral_online{/yun}','{yun:}$config.integral_proportion{/yun}');return false;"><i class="login_ok_mune_icon login_ok_mune_icon_cj"></i>发布职位</a></div>
+<div class="login_ok_member"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php" class="login_ok_member_bth">管理中心</a><a href="javascript:void(0);" onclick="logout('{yun:}url c=logout{/yun}');" class="login_ok_member_bthtc">退出登录</a></div>
+</div>
+
+{yun:}elseif $usertype=="4"{/yun}
+
+<div class="login_ok">
+<div class="login_ok_user">
+<div class="login_ok_user_photo"><img width="60" height="60"  src="{yun:}$member.logo{/yun}" onerror="showImgDelay(this,'{yun:}$config.sy_ossurl{/yun}/{yun:}$config.sy_member_icon{/yun}',2);"> </div>
+<div class="login_ok_username">hi , {yun:}$username{/yun}</div>
+<div class="login_ok_hi">欢迎登录</div>
+</div>
+<div class="login_ok_n_listbox">
+<div class="login_ok_n_list"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=sign_up&status=2"><span class="login_ok_n">{yun:}$member.baoming{/yun}</span><div class="login_ok_name">待联系</div></a></div>
+<div class="login_ok_n_list">	<a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=message&status=1"><span class="login_ok_n">{yun:}$member.zixun{/yun}</span><div class="login_ok_name">待回复</div></a></div>
+</div>
+<div class="login_ok_mune">
+<div class="login_ok_mune_list" style="width:32%"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=subject"><i class="login_ok_mune_icon"></i>课程管理</a></div><div class="login_ok_mune_list" style="width:32%"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=team"><i class="login_ok_mune_icon login_ok_mune_icon_cj"></i>讲师管理</a></div>
+<div class="login_ok_mune_list" style="width:32%"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=sign_up"><i class="login_ok_mune_icon login_ok_mune_icon_gz"></i>预约名单</a></div>
+<div class="login_ok_member"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php" class="login_ok_member_bth">管理中心</a><a href="javascript:void(0);" onclick="logout('{yun:}url c=logout{/yun}');" class="login_ok_member_bthtc">退出登录</a></div>
+</div>
+
+{yun:}else{/yun}
+	<!--登录-->
+	<!--<div class="index_frame_right_tit">
+		<span class="index_frame_right_tit_s"><i class="index_frame_right_tit_line"></i>用户登录</span> 
+	</div>-->
+	
+	<!-- <input type="hidden" name="act" id="act_login" value="0"/> -->
+
+	{yun:}if $config.wx_author=='1'{/yun}
+		<div class="wx_login" title="微信扫一扫登录" style="display:block;"><span class="wxcode_login_c"><!--<i class="wxcode_login_c_icon">扫码登录</i>--></span></div>
+		<div class="indexnormal_login none" title="普通登录"></div>
+	{yun:}/if{/yun}
+	<div class="indexwx_login_show none">
+		<div id="indexwx_login_qrcode" class="indexwxlogintext">正在获取二维码...</div>
+		<div class="wxlogintxt">请使用微信扫一扫登录</div>
+	</div>
+	
+	<div id="login_normal">
+		<div class="index_frist_pic"> <span class="index_frist_pic_bg"></span></div>
+		<div class="index_frist_hi"> Hi , 欢迎登录！</div>
+		<div class="index_frist_login_bth">
+      {yun:}if $uid{/yun}
+			<a href="javascript:void(0);"  onclick="showlogin('','{yun:}$uid{/yun}');" class="index_frist_login_bth_l">登录</a>
+			{yun:}else{/yun}
+      <a href="javascript:void(0);"  onclick="showlogin('','');" class="index_frist_login_bth_l">登录</a>
+      {yun:}/if{/yun}
+      <a href="{yun:}$reg_com_url{/yun}" class="index_frist_login_bth_reg">注册</a>
+		</div>
+	<!--	<div class="index_frist_login_sj">
+			
+			{yun:}if $config.sy_msg_isopen==1 && $config.sy_msg_login==1{/yun}
+				<a href="{yun:}url m=login{/yun}" class="index_frist_login_bth_sj_a">使用手机动态码登录</a> 
+			{yun:}/if{/yun}
+
+			<a href="{yun:}url m=forgetpw{/yun}"  class="index_frist_login_bth_m">找回密码？</a>
+		</div>-->
+        
+		{yun:}if $config.sy_qqlogin==1 || $config.sy_sinalogin==1 || $config.wx_author==1{/yun}
+			<div class="index_frist_login_other"> 
+				<div class="index_frist_login_other_tit"> 
+					<span class="index_frist_login_other_tit_s">其他方式登录</span>
+				</div>
+			</div>
+			<div class="index_frist_login_other_box">
+				{yun:}if $config.wx_author==1{/yun}
+					<a href="{yun:}url m=wxconnect{/yun}" class="index_frist_login_other_wx"></a>
+				{yun:}/if{/yun}
+				{yun:}if $config.sy_qqlogin==1{/yun}
+					<a href="{yun:}$config.sy_weburl{/yun}/qqlogin.php" class="index_frist_login_other_qq"></a>
+				{yun:}/if{/yun} 
+				{yun:}if $config.sy_sinalogin==1{/yun}
+					<a href="{yun:}url m=sinaconnect{/yun}" class=" index_frist_login_other_xl"></a>
+				{yun:}/if{/yun} 
+				
+				
+			</div>
+		{yun:}/if{/yun}
+	</div>      
+{yun:}/if{/yun}
+
+<style>#label{height:34px; line-height:34px;border:1px solid #e6e6e6}
+
+</style>
+
+<script>
+	$(document).ready(function(){
+		//账号登录和手机登录tab选择
+		/**
+		$('#acount_login').click(function(data){
+			$('#acount_login').removeClass().addClass('login_box_h_list_cur');
+			$('#mobile_login').removeClass();
+			$('#login_normal_box').show();
+			$('#login_sj_box').hide();
+			$('#login_sjyz_box').hide();
+			$('#act_login').val('0');
+		});
+		$('#mobile_login').click(function(data){
+			$('#mobile_login').removeClass().addClass('login_box_h_list_cur');
+			$('#acount_login').removeClass();
+			$('#login_sj_box').show();
+			$('#login_sjyz_box').show();
+			$('#login_normal_box').hide();
+			$('#act_login').val('1');
+		});
+		$("#username,#txt_CheckCode,#usermoblie,#dynamiccode").focus(function(){
+			var txAreaVal = $(this).val();
+			if( txAreaVal == this.defaultValue){$(this).val("");}
+		}).blur(function(){
+			var txAreaVal = $(this).val();
+			if( txAreaVal == this.defaultValue||$(this).val()==""){$(this).val(this.defaultValue);}
+		}).keydown(function (e) {
+			var ev = document.all ? window.event : e;
+			if (ev.keyCode == 13) {
+				check_login('{yun:}url m=login c=loginsave{/yun}','vcode_imgs');
+			} else { return;}
+		});
+		$("#password2").focus(function(){
+			$("#password").show();
+			$("#password").focus();
+			$("#password2").hide();
+		})
+		$("#password").blur(function(){
+			if($("#password").val()==""){
+				$("#password2").show();
+				$("#password").hide();
+			}
+		}).keydown(function (e) {
+			var ev = document.all ? window.event : e;
+			if (ev.keyCode == 13) {
+				check_login('{yun:}url m=login c=loginsave{/yun}','vcode_imgs');
+			} else { return; }
+		});
+		*/
+		var setval;
+		$('.wx_login').click(function(data){
+			$('.wx_login').hide();
+			$('.indexnormal_login').show();
+			$('#login_normal').hide();
+			$('.login_box_h_list').hide();
+			$('.indexwx_login_show').show();
+			$.post('{yun:}url m=login c=wxlogin{/yun}',{t:1},function(data){
+				if(data==0){
+					$('#indexwx_login_qrcode').html('二维码获取失败..');
+				}else{
+					$('#indexwx_login_qrcode').html('<img src="'+data+'" width="100" height="100">');
+					setval = setInterval("wxorderstatus()", 2000); 
+				}
+			});
+
+		});
+		$('.indexnormal_login').click(function(data){
+			$('.wx_login').show();
+			$('.indexnormal_login').hide();
+			$('#login_normal').show();
+			$('.login_box_h_list').show();
+			$('.indexwx_login_show').hide();
+			clearInterval(setval);
+		});
+	});
+
+function wxorderstatus() { 
+	$.post('{yun:}url m=login c=getwxloginstatus{/yun}',{t:1},function(data){
+		var data=eval('('+data+')');
+		if(data.url!='' && data.msg!=''){
+			layer.msg(data.msg, 2, 9,function(){window.location.href=data.url;});
+		}else if(data.url){
+			window.location.href=data.url;
+		}
+	});
+}
+function jobaddurl(num,integral_job){ 
+	var gourl= weburl+'/member/index.php?c=jobadd';
+		checkType = 'addjob';
+
+	var url = weburl + '/index.php?m=ajax&c=ajax_day_action_check';
+		layer.load('执行中，请稍候...',0);  
+		$.post(url,
+			{'type': checkType},
+			function(data){
+				layer.closeAll('loading');
+				data = eval('(' + data + ')');
+				if(data.status == -1){
+					layer.msg(data.msg, 2, 8);
+				}else if(data.status == 1){
+					if(num==1){
+						window.location.href=gourl;
+						window.event.returnValue = false;
+						return false;
+					}else if(num==2){
+						var msg='套餐已用完，您可以<a href="'+weburl+'/member/index.php?c=right&act=added" style="color:red;">购买增值包</a>！是否继续？';
+						layer.confirm(msg, function(){
+							layer.closeAll();
+							window.location.href=weburl+"/member/index.php?c=right&act=added"; 
+							
+						});
+					}else if(num==0){
+						var msg='会员已到期，您可以<a href="'+weburl+'/member/index.php?c=right" style="color:red">购买会员</a>！是否继续？';
+
+						layer.confirm(msg, function(){
+							window.location.href=weburl+"/member/index.php?c=right"; 
+						});  
+ 						
+ 					}
+				}
+			}
+		);
+	}
+  function showlogin(usertype,uid) {
+    if(uid>0){
+      window.location.href = "{yun:}url m=login{/yun}";
+    }else{
+      checkCode('vcode_img');
+      $("#login_usertype").val(usertype);
+      var reg_moblie = '{yun:}$config.reg_moblie{/yun}';
+      var reg_email = '{yun:}$config.reg_email{/yun}';
+      $("#onregister").attr("href", '{yun:}url m=register{/yun}');
+
+      $.layer({
+        id: 'onloginid',
+        type: 1,
+        title: '欢迎登录',
+        closeBtn: [0, true],
+        offset: ['20%'],
+        border: [10, 0.3, '#000', true],
+        area: ['410px', 'auto'],
+        zIndex:100,
+        page: {
+          dom: "#onlogin"
+        }
+      });
+    }  
+		
+	}
+</script>

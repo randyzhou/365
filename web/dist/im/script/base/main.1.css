@@ -1,0 +1,414 @@
+    html,body{
+      margin: 0px;
+      padding: 0px;
+      height: 100%;
+      max-width: 100%;
+      font-family: sans-serif
+    }
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    }
+
+    input,select,textarea{
+      border: 1px #ccc solid;
+      border-radius: 3px
+    }
+    table{
+      width: 100%;
+      border-collapse: collapse;;
+    }
+    table td{
+      vertical-align: middle
+    }
+    td{
+      font-size: 14px
+    }
+    .searchTable input,select,textarea{
+      margin: 3px
+    }
+    .nav{
+      display: none;
+      position:fixed;
+      top:0px;
+      width:100%;
+      max-width: 400px;
+      height:65px;
+      line-height: 40px;
+      background-color: #333333;
+      vertical-align: middle;
+      text-align:center;
+      border:0px;
+      z-index: 10000;
+    }
+    .nav a{
+      color:white;
+      font-weight:bolder;
+      margin:3px;
+    }
+    .bottom{
+      position:fixed;
+      bottom:0px;
+      width:100%;
+      max-width: 400px;
+      height:50px;
+      line-height: 40px;
+      background-color:#fefefe;
+      vertical-align: middle;
+      text-align:center;
+      border:0px;
+      border-top: 1px #ccc solid;
+      z-index: 10000;
+    }
+    .bottom a{
+      color:#999;
+      margin:3px;
+    }
+    #bottom_tbl td{
+      width:100px;
+    }
+    #login_div{
+      position: fixed;
+      display: none;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      border: 0px;
+      top: 0px;
+      left: 0px;
+    }
+    #list_more{
+      display: none;
+      position: fixed;
+      top: 70px;
+      right: 5px;
+      background-color: white;
+      width: 100px;
+      padding: 10px;
+      text-align: 25px;
+      border: 1px #aaa solid;
+      border-radius: 5px
+    }
+    #list_more div{
+      padding: 5px
+    }
+
+    #msgPersonalContentDiv,#msgGroupContentDiv,#msgStoreContentDiv{
+      display: none;
+      background-color: #efefef;
+      height: 100%;
+      width: 100%;
+      max-width: 400px;
+    }
+    #msgContent {
+     width: 100%;
+     height: 88%;
+     overflow-y: auto;
+     font-size: 14px;
+    }
+    #msglog {
+     width: 100%;
+     font-size: 14px;
+     height: 92%;
+     padding-bottom: 10px;
+     overflow-y: scroll;
+    }
+    .messageInputDiv {
+     height: 40px;
+     position: fixed;
+     bottom: 5px;
+     width: 100%;
+     padding: 5px
+    }
+    .messageInputDiv .messageTbl{
+      width: 100%
+    }
+    .messageInputDiv .messageTbl .sendBtnTd{
+      width: 60px
+    }
+    .messageInputDiv .messageTbl .sendBtnTd #chatSendBtn{
+      border-radius: 3px;
+      height: 31px
+    }
+    #messageInput {
+     height: 30px;
+     border-radius: 5px;
+     border: 1px #ccc solid;
+     bottom: 5px;
+     width: 100%;
+     max-width: 400px
+    }
+    .message {
+     line-height: 22px;
+     padding-right: 5px;
+     padding-left: 5px;
+    }
+    .message .user {
+     color: #888;
+    }
+    .message .msg {
+      background-color: white;
+      border-radius: 5px;
+      padding: 10px;
+    }
+    td{
+      vertical-align: top
+    }
+    .sysMsg {
+     color: #c1bfbf;
+     padding-right: 5px;
+     padding-left: 5px;
+     font-size: 12px;
+    }
+    #users {
+     width: 100%;
+     padding: 0 5px 5px;
+    }
+    #sysMsgDiv {
+      position:absolute;
+      display:inline-block;
+      height:35px;
+      line-height:35px;
+      background-color:#ccc;
+      width:100%;
+      display: none;
+      top: 0px;
+      overflow-x: auto
+    }
+    .chatUserPic {
+      width: 35px;
+      height: 35px;
+      margin-left: 5px;
+      margin-top: 5px;
+    }
+    #msgHeader {
+      display: none;
+      width: 100%;
+      height: 65px;
+    }
+    #msgHeader .marginTop {
+      width: 100%;
+      height: 25px;
+    }
+
+  #msgContent {
+   width: 100%;
+   height: 88%;
+   overflow-y: auto;
+   font-size: 14px;
+  }
+  .chatMsgTable {
+    width: 100%;
+  }
+  .chatMsgTable .picTd {
+    width: 50px;
+  }
+  .message {
+   line-height: 22px;
+   padding-right: 5px;
+   padding-left: 5px;
+  }
+  .message .user {
+   color: #888;
+  }
+  .message .user a{
+   text-decoration: none;
+  }
+  .message .msg {
+    border-radius: 5px;
+    padding: 5px;
+    display: inline-block;
+    text-align: left;
+    border: 1px #ccc solid;
+    word-break: break-all;
+  }
+  .message .msgLeft {
+    background-color: white;
+  }
+  .message .msgRight {
+    background-color: greenyellow;
+  }
+  td{
+    vertical-align: top
+  }
+  .sysMsg {
+   color: #c1bfbf;
+   padding-right: 5px;
+   padding-left: 5px;
+   font-size: 12px;
+  }
+  #users {
+   width: 100%;
+   padding: 0 5px 5px;
+  }
+  #sysMsgDiv {
+    position:absolute;
+    display:inline-block;
+    height:35px;
+    line-height:35px;
+    background-color:#ccc;
+    width:100%;
+    display: none;
+    overflow-x: auto
+  }
+  .chatUserPic {
+    width: 35px;
+    height: 35px;
+    margin-left: 5px;
+    margin-top: 5px;
+  }
+  .dtimeLeft {
+    position: absolute;
+    left: 10px;
+  }
+  .dtimeRight {
+    position: absolute;
+    right: 10px;
+  }
+  #club-nav a{
+    color: white;
+  }
+  #chatDiv {
+    height: 70%;
+  }
+  td {
+    text-align: left
+  }
+  .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+      color: #fff;
+      background-color: #39b3d7;
+      border-color: #269abc;
+  }
+  .btn-info {
+      color: #fff;
+      background-color: #5bc0de;
+      border-color: #46b8da;
+  }
+  #listMoreDiv,#listMoreDiv span{
+    padding:5px
+  }
+  #bottom_tbl tr td span{
+    padding:5px
+  }
+  #main{
+    display:none
+  }
+  p {
+    margin: 0 0 10px;
+  }
+  #alertMsg {
+      display: none;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 1px 1px 10px black;
+      padding: 10px;
+      font-size: 12px;
+      position: absolute;
+      text-align: center;
+      background: #fff;
+      z-index: 100000;
+  }
+  #alertMsg_info {
+      padding: 2px 15px;
+      line-height: 1.6em;
+      text-align: left;
+  }
+  #alertMsg_btn1, #alertMsg_btn2 {
+      display: inline-block;
+      background: url(images/gray_btn.png) no-repeat left top;
+      padding-left: 3px;
+      color: #000000;
+      font-size: 12px;
+      text-decoration: none;
+      margin-right: 10px;
+      cursor: pointer;
+  }
+  #alertMsg_btn1 cite, #alertMsg_btn2 cite {
+      line-height: 24px;
+      display: inline-block;
+      padding: 0 13px 0 10px;
+      background: url(images/gray_btn.png) no-repeat right top;
+      font-style: normal;
+  }
+  .btn{
+    font-size:12px;
+  }
+  .hide{
+    display: none;
+  }
+  .user_admin_table{
+    width: 95%;
+    margin-left: 5px;
+    font-size: 16px
+  }
+  .user_admin_table tr{
+    height: 40px
+  }
+  .user_admin_table tr td{
+    font-size: 16px
+  }
+  .user_admin_table .first-td {
+    font-size: 16px;
+    text-align: left
+  }
+  .user_admin_table .right-td {
+    font-size: 16px;
+    text-align: right
+  }
+  .user_admin_table input,textarea,select{
+    border: 0px;
+    font-size: 16px;
+    text-align: right;
+    background-color: white
+  }
+  .user_admin_table .info-top{
+    border-bottom: 1px solid #ccc;
+    color: green;
+    text-align: right
+  }
+
+  .date-picker-list .am-list-item .am-list-line .am-list-extra {
+    flex-basis: initial;
+  }
+
+  .picker-list .am-list-item .am-list-line .am-list-extra {
+    flex-basis: initial;
+  }
+  
+  .test {
+    position: relative;
+    border-bottom: 0;
+  }
+  
+  .test:after {
+    content: '';
+    position: absolute;
+    background-color: #ddd;
+    display: block;
+    z-index: 1;
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1PX;
+    -webkit-transform-origin: 50% 100%;
+    -ms-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+    -webkit-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
+
+  #main_test{
+    width:250px;
+    margin:20px
+  }
+  #main_test div{
+    width:3px;
+    height:3px;
+    background-color: red;
+    float:left
+  }

@@ -1,0 +1,18 @@
+<?php
+/*
+include(dirname(dirname(__FILE__)).'/global.php');
+$Dir = str_replace("/","\\",dirname(__FILE__));
+$DirNameList=explode('\\',$Dir);
+$ModuleName=end($DirNameList);
+$DirName   = end($DirNameList);
+include(LIB_PATH.'init.php');
+ */ 
+echo "aaa0";
+
+include(dirname(dirname(__FILE__)).'/global.php');
+$Dir = str_replace("/","\\",dirname(__FILE__));
+$DirNameList=explode('\\',$Dir);
+$ModuleName=end($DirNameList);
+$DirName   = end($DirNameList);
+include(LIB_PATH.'init.php');
+?>

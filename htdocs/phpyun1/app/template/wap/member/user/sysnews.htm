@@ -1,0 +1,47 @@
+{yun:}include file="$wapstyle/member/header.htm"{/yun}
+<div class="app_news">
+<div class="app_news_nav"><a href="index.php?c=sq&back=1" class="app_news_nav_a"><i class="app_news_nav_icon app_news_nav_icon_td"></i>投递进展</a></div>   
+<div class="app_news_nav"><a href="index.php?c=invite" class="app_news_nav_a"><i class="app_news_nav_icon app_news_nav_icon_tz"></i>面试通知{yun:}if $wkyqnum{/yun}<i class="synews_box_tz">{yun:}$wkyqnum{/yun}</i>{yun:}/if {/yun}</a></div>      
+<div class="app_news_nav"><a href="index.php?c=look" class="app_news_nav_a"><i class="app_news_nav_icon app_news_nav_icon_xq"></i>对我感兴趣</a></div>   
+</div>
+
+
+<div class="synews_box ">
+    {yun:}if $sxrowsnum > 0{/yun}
+    <a href="index.php?c=sxnews">
+        <i class="synews_box_icon synews_box_icon_sx"></i>
+        <div class="synews_box_h1">系统消息</div>
+        <div class="synews_box_p">{yun:}$sxrows.content_n{/yun}</div>
+        <span class="synews_box_time">{yun:}$sxrows.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</span> 
+        <i class="synews_box_n">{yun:}$sxrowsnum{/yun}</i>
+    </a>
+    {yun:}else{/yun}
+    <a href="index.php?c=sxnews">
+        <i class="synews_box_icon synews_box_icon_sx"></i>
+        <div class="synews_box_h1">系统消息</div>
+        <div class="synews_box_p">暂无新的通知~</div>
+    </a>
+    {yun:}/if{/yun}
+</div>
+
+<div class="synews_box ">
+    {yun:}if $commsgnum{/yun}
+    <a href="index.php?c=commsg">
+        <i class="synews_box_icon synews_box_icon_pl"></i>
+        <div class="synews_box_h1">职位咨询</div>
+        <div class="synews_box_p">企业{yun:}$commsg.com_name{/yun}回复了你的咨询 !</div>
+        <span class="synews_box_time">{yun:}$commsg.reply_time|date_format:"%Y-%m-%d %H:%M"{/yun}</span> 
+        <i class="synews_box_n"> {yun:}$commsgnum{/yun}</i>
+    </a>
+    {yun:}else{/yun}
+    <a href="index.php?c=commsg">
+        <i class="synews_box_icon synews_box_icon_pl"></i>
+        <div class="synews_box_h1">职位咨询</div>
+        <div class="synews_box_p">您还没有咨询信息~</div>
+    </a>
+    {yun:}/if{/yun}
+    
+</div>
+
+</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun}

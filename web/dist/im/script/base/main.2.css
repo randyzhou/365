@@ -1,0 +1,209 @@
+  html,body{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    max-width: 100%;
+    font-family: "PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,Helvetica Neue,Arial,sans-serif";
+    letter-spacing: 0px;
+    line-height: 22px
+  }
+
+  *{
+    -webkit-overflow-scrolling: touch;
+    -webkit-appearance: none;
+    touch-action: pan-y;
+  }
+
+  @media all and (display-mode: fullscreen) {
+    body {
+      margin: 0;
+      border: 0;
+      background-color: transparent
+    }
+  }    
+
+  table{
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table td{
+    text-align: left;
+    vertical-align: middle;
+    font-size: 14px
+  }
+
+  input{
+    border: 0px solid white
+  }
+
+  #login_div{
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 0px;
+    top: 0px;
+    left: 0px;
+  }
+
+  .message .msg {
+    border-radius: 5px;
+    padding: 5px;
+    display: inline-block;
+    text-align: left;
+    border: 1px #ddd solid;
+    word-break: break-all;
+    color: #444;
+    font-size: 15px
+  }
+  .message .msgLeft {
+    background-color: #fefefe;
+  }
+  .message .msgRight {
+    background-color: #98ea70;
+  }
+
+  .chatUserPic {
+    width: 35px;
+    height: 35px;
+    margin-left: 0px;
+    margin-top: 0px;
+    border-radius: 3px;
+  }
+  .dtimeLeft {
+    position: absolute;
+    left: 10px;
+  }
+  .dtimeRight {
+    position: absolute;
+    right: 10px;
+  }
+
+  #chatDiv {
+    height: 70%;
+  }
+
+  .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+      color: #fff;
+      background-color: #39b3d7;
+      border-color: #269abc;
+  }
+  .btn-info {
+      color: #fff;
+      background-color: #5bc0de;
+      border-color: #46b8da;
+      font-size: 12px;
+      padding: 3px;
+      border-radius: 5px
+  }
+  #listMoreDiv,#listMoreDiv span{
+    padding:5px
+  }
+  #bottom_tbl tr td span{
+    padding:5px
+  }
+  #main{
+    display:none
+  }
+  p {
+    margin: 0 0 10px;
+  }
+  #alertMsg {
+      display: none;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 1px 1px 10px black;
+      padding: 10px;
+      font-size: 12px;
+      position: absolute;
+      text-align: center;
+      background: #fff;
+      z-index: 100000;
+  }
+  #alertMsg_info {
+      padding: 2px 15px;
+      line-height: 1.6em;
+      text-align: left;
+  }
+  #alertMsg_btn1, #alertMsg_btn2 {
+      display: inline-block;
+      background: url(images/gray_btn.png) no-repeat left top;
+      padding-left: 3px;
+      color: #000000;
+      font-size: 12px;
+      text-decoration: none;
+      margin-right: 10px;
+      cursor: pointer;
+  }
+  #alertMsg_btn1 cite, #alertMsg_btn2 cite {
+      line-height: 24px;
+      display: inline-block;
+      padding: 0 13px 0 10px;
+      background: url(images/gray_btn.png) no-repeat right top;
+      font-style: normal;
+  }
+  .btn{
+    font-size:12px;
+  }
+  .hide{
+    display: none;
+  }
+
+  .user_detail_table{
+    height: 50px;
+    border-bottom: 1px #ddd solid
+  }
+  .user_detail_table .first_td{
+    width: 12.5px
+  }
+  .user_detail_table .second_td{
+    width: 80px;
+    text-align: left;
+    font-size: 17px
+  }
+  .user_detail_table .third_td{
+    font-size: 16px;
+    color: #888;
+    text-align: right
+  }
+  .user_detail_table .last_td{
+    width: 15px
+  }  
+  .user_detail_table .user_detail_div{
+    text-align: left;
+    display: inline-block
+  }
+  .info-top{
+    height: 30px;
+    line-height: 30px;
+    padding-left: 15px;
+    font-size: 16px;
+    color: brown
+  }
+
+  .searchTable tr{
+    height: 32px
+  }    
+  .searchTable .firstTd{
+    width: 5px;
+    font-size: 16px
+  }
+  .searchTable .secondTd{
+    width: 80px;
+    text-align: left;
+    font-size: 16px
+  }
+  .searchTable .lastTd{
+    text-align: right;
+    font-size: 16px
+  }    
+  .searchTable .lastTd input{
+    text-align: right;
+    font-size: 16px;
+    margin-right: 15px
+  }    
+  #appsearchdiv span{
+    margin-right:10px
+  }

@@ -1,0 +1,451 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+	
+<style>
+    body {background: #fff; position:relative}
+		.header_h{ display:none;}
+	.header_top_l:after{
+    content: ' ';
+    width: 12px;
+    height: 12px;
+    border: #333 solid;
+    -webkit-transform: rotate(-135deg);
+    border-width: 1px 1px 0 0;
+    color: #828282;
+    display: inline-block;
+}
+</style>
+<div class="login_tit">  <a class="hd-lbtn" href="{yun:}if $backurl{/yun}{yun:}$backurl{/yun}{yun:}else{/yun}javascript:goBack();{yun:}/if{/yun}"><i class="header_top_l"></i></a>欢迎注册 <a href="{yun:}url m=wap c=login{/yun}" class="login_tit_reg">登录已有账号</a></div>
+<div class="yunwapreg_box">
+
+ 
+    <section class="list">
+        <article>
+
+            {yun:}if $wxid &&($wxnickname || $wxpic){/yun}
+            <div class="lg_at">
+                <dl>
+                    <dt><img style="width:75px;height:75px;border-radius:50px;" src="{yun:}$wxpic{/yun}"/></dt>
+                    <dd class="lg_at_tit">{yun:}$wxnickname{/yun}</dd>
+                    <dd class="lg_at_cr">您已登录微信账号</dd>
+                </dl>
+            </div>
+            {yun:}/if{/yun}
+            
+			<!--马甲登录start -->
+			{yun:}if $maglogin && $maglogin==1{/yun}
+			<div class="lg_at">
+				<dl>
+					<dt><img style="width:75px;height:75px;border-radius:50px;" src="{yun:}$smarty.session.mag.head{/yun}"/></dt>
+					<dd class="lg_at_tit">{yun:}$smarty.session.mag.name{/yun}</dd>
+					<dd class="lg_at_cr">您已经登录{yun:}$config.sy_magwebname{/yun}账号</dd>
+				</dl>
+			</div>
+			{yun:}/if{/yun}
+			<!--马甲登录end -->
+			<!--千帆云登录start -->
+			<div id="qfydiv" style="display: none;">
+				<div class="lg_at">
+					<dl>
+						<dt><img style="width:75px;height:75px;border-radius:50px;" id="qfyhead" src=""/></dt>
+						<dd class="lg_at_tit" id="qfyname"></dd>
+						<dd class="lg_at_cr">您已登录{yun:}$config.sy_qfywebname{/yun}</dd>
+					</dl>
+				</div>
+			</div>	
+			<!--千帆云登录 end-->
+			
+            <div class="regform">
+                <form method="post" action="{yun:}$config_wapdomain{/yun}/index.php?c=register" onsubmit="return checkRegUser(this);" autocomplete="off">
+                    <input id="qfyuid" name="qfyuid" type="hidden" value=""/>
+                    <input name="regway" id="regway" type="hidden" value="{yun:}$type{/yun}" />
+				
+                    <dl class="forminputitem">
+
+                        {yun:}if $config.reg_email=='1' && $type == 3{/yun}
+                        <dd>
+                            <div class="c ico_name inputitem_w">
+                                <i class="reg_icon_font login_icon_n3 "></i>
+								<div class="mui-input-row">
+									<input class="inputitemtxt mui-input-clear" placeholder="请填写您的邮箱" name="email" id="email" type="text" onBlur="check_email();">
+								</div>
+								
+                                
+                                <span class="reg_yes" style="display: none;" id="email_yes"></span>
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="c ico_pwd2 inputitem_w">
+                                <i class="reg_icon_font login_icon_n2"></i>
+								<div class="mui-input-row">
+		
+									 <input class="inputitemtxt mui-input-password" onfocus="this.type='password'" placeholder="请填写密码，建议填写字母数字组合" name="password" id="password" type="text" onblur="check_password();">
+								</div>
+								
+                               
+                                <span class="reg_yes" style="display: none;" id="password_yes"></span>
+                                <em class="viewpwd"></em></div>
+                        </dd>
+
+                        {yun:}if $config.reg_passconfirm=='1'{/yun}
+                        <dd>
+                            <div class="c ico_pwd2 inputitem_w">
+                                <i class="reg_icon_font login_icon_n2 "></i>
+								<div class="mui-input-row">
+		
+									<input class="inputitemtxt mui-input-password" onfocus="this.type='password'" placeholder="请确认填写的密码" name="passconfirm" id="passconfirm" type="text" onblur="check_passconfirm();">
+								</div>
+                                
+                                <span class="reg_yes" style="display: none;" id="passconfirm_yes"></span>
+                                <em class="viewpwd"></em></div>
+                        </dd>
+                        {yun:}/if{/yun} 
+						
+						{yun:}if strpos($config.code_web,"注册会员")!==false{/yun}
+                        <dd>
+                           {yun:}if $config.code_kind==3 || $config.code_kind==4{/yun}
+						<div class="gtdx-captcha">
+							{yun:}if $config.reg_real_name_check == 1{/yun}
+							<div id="bind-captcha" data-id='send_msg_tips' data-type='click'></div>
+							{yun:}else{/yun}
+							<div id="bind-captcha" data-id='subreg' data-type='submit'></div>
+							{yun:}/if{/yun}
+							<input type='hidden' id="geetest_challenge"  name="geetest_challenge" value="">
+							<input type='hidden' id="geetest_validate"  name="geetest_validate" value="">
+							<input type='hidden' id="geetest_seccode"  name="geetest_seccode" value="">
+							<input type='hidden' id="dx_token"  name="dx_token" value="">
+							<input type='hidden' id="popup-submit">	
+							<input type='hidden' id="bind-submit">
+						</div>
+							
+							
+							{yun:}else{/yun}
+                            <div class="c ico_name inputitem_w">
+                                <i class="reg_icon_font login_icon_tpyz "></i>
+                                <div class="reg_yzm_box"> 
+								<div class="mui-input-row">
+									<input class="inputitemtxt" placeholder="请填写验证码，点图片换一换" name="checkcode" id="checkcode" type="text" maxlength="6" onblur="check_code()" />
+								</div>
+								
+                                    <div class="rg_img">
+                                        <img id="vcodeimg" class="authcode" src="{yun:}$config.sy_wapdomain{/yun}/authcode.inc.php" onclick="checkCode('vcodeimg');" />
+                                    </div>
+                                </div>
+                                <span class="reg_yes reg_yes_yz" style="display: none;" id="checkcode_yes"></span>
+                            </div>
+                            {yun:}/if{/yun}
+                        </dd>
+                        {yun:}/if{/yun}  
+						
+						{yun:}if $config.reg_real_name_check == 1{/yun}
+						<dd>
+                            <div class="c ico_name inputitem_w">
+                                <i class="reg_icon_font login_icon_n4 "></i>
+                                <input class="inputitemtxt" placeholder="请填写您的手机号码" name="moblie" id="moblie" type="tel" onBlur="check_moblie();" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+                                <span class="reg_yes" style="display: none;" id="moblie_yes"></span>
+                            </div>
+
+                        </dd>
+                        <dd>
+                            <div class="c ico_name inputitem_w">
+                                <i class="reg_icon_font login_icon_n9 "></i>
+								<div class="mui-input-row">
+									 <input class="inputitemtxt" maxlength="6"  placeholder="请填写短信验证码" name="moblie_code" id="moblie_code" type="text" onblur="check_moblie_code()" />
+								</div>
+                                <div class="rg_nmb">
+                                    <a class="login_m_send2" href="javascript:void(0);" id="send_msg_tips" onclick="sendmsg('vcode_img');"><span id="time">获取验证码</span></a>
+
+                                    <span class="reg_yes" style="display: none;" id="moblie_code_yes"></span>
+                                </div> </div>
+                        </dd>
+                        {yun:}/if{/yun} 
+						
+						{yun:}elseif $type==2 || $type == ''{/yun}
+                        <dd>
+                            <div class="c ico_name inputitem_w">
+                                <i class="reg_icon_font login_icon_n4 "></i>
+								<div class="mui-input-row">
+									 <input class="inputitemtxt mui-input-clear" placeholder="请填写您的手机号码" name="moblie" id="moblie" type="tel" onBlur="check_moblie();" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+								</div>
+                               
+                                <span class="reg_yes" style="display: none;" id="moblie_yes"></span>
+                            </div>
+
+                        </dd>
+						{yun:}if strpos($config.code_web,"注册会员")!==false{/yun}
+                        <dd>
+                            {yun:}if $config.code_kind==3 || $config.code_kind==4{/yun}
+							<input type='hidden' id="noblur" value="1" />
+							<div class="gtdx-captcha">
+							{yun:}if $config.sy_msg_regcode==1 || $config.reg_real_name_check == 1{/yun}
+							<div id="bind-captcha" data-id='send_msg_tips' data-type='click'></div>
+							{yun:}else{/yun}
+							<div id="bind-captcha" data-id='subreg' data-type='submit'></div>
+							{yun:}/if{/yun}
+							
+							<input type='hidden' id="geetest_challenge"  name="geetest_challenge" value="">
+							<input type='hidden' id="geetest_validate"  name="geetest_validate" value="">
+							<input type='hidden' id="geetest_seccode"  name="geetest_seccode" value="">
+							<input type='hidden' id="dx_token"  name="dx_token" value="">
+							<input type='hidden' id="popup-submit">	
+							<input type='hidden' id="bind-submit">
+						</div>
+							{yun:}else{/yun}
+                            <div class="c ico_name inputitem_w">
+                                <i class="reg_icon_font login_icon_tpyz "></i>
+                                <div class="reg_yzm_box"> 
+								<div class="mui-input-row">
+									<input class="inputitemtxt" placeholder="请填写验证码，点图片换一换" name="checkcode" id="checkcode" type="text" maxlength="6" onblur="check_code()" />
+								</div>
+								
+								
+                                    <div class="rg_img">
+                                        <img id="vcode_img" class="authcode" src="{yun:}$config.sy_wapdomain{/yun}/authcode.inc.php" onclick="checkCode('vcode_img');" />
+                                    </div>
+                                </div>
+                                <span class="reg_yes reg_yes_yz" style="display: none;" id="checkcode_yes"></span>
+                            </div>
+                            {yun:}/if{/yun}
+                        </dd>
+                        {yun:}/if{/yun}
+                        <dd>
+                            <div class="c ico_name inputitem_w">
+                                <i class="reg_icon_font login_icon_n9 "></i>
+								<div class="mui-input-row">
+									<input class="inputitemtxt" maxlength="6"  placeholder="请填写短信验证码" name="moblie_code" id="moblie_code" type="text" onblur="check_moblie_code()" />
+								</div>
+								
+                                <a class="login_m_send2" href="javascript:void(0);" id="send_msg_tips" onclick="sendmsg('vcode_img');"><span id="time">获取验证码</span></a>
+
+                                <span class="reg_yes reg_yes_yz" style="display: none;" id="moblie_code_yes"></span>
+                            </div>
+                        </dd>
+
+                        <dd>
+                            <div class="c ico_pwd2 inputitem_w">
+                                <i class="reg_icon_font login_icon_n2 "></i>
+								<div class="mui-input-row">
+		
+									<input class="inputitemtxt mui-input-password" onfocus="this.type='password'" placeholder="请填写密码，建议填写字母数字组合" name="password" id="password" type="text" onblur="check_password();">
+								</div>
+		
+                                
+                                <span class="reg_yes" style="display: none;" id="password_yes"></span>
+                                <em class="viewpwd"></em></div>
+                        </dd>
+
+                        {yun:}if $config.reg_passconfirm=='1'{/yun}
+                        <dd>
+                            <div class="c ico_pwd2 inputitem_w">
+                                <i class="reg_icon_font login_icon_n2 "></i>
+								<div class="mui-input-row">
+		
+									<input class="inputitemtxt mui-input-password" onfocus="this.type='password'" placeholder="请确认填写的密码" name="passconfirm" id="passconfirm" type="text" onblur="check_passconfirm();">
+								</div>
+                                <span class="reg_yes" style="display: none;" id="passconfirm_yes"></span>
+                                <em class="viewpwd"></em>
+                            </div>
+                        </dd>
+                        {yun:}/if{/yun} 
+						
+						
+						
+						{yun:}elseif $type==1{/yun}
+                        <dd>
+                            <div class="c ico_name inputitem_w">
+                                <i class="reg_icon_font login_icon_n1 "></i>
+								<div class="mui-input-row">
+									<input class="inputitemtxt mui-input-clear" placeholder="请填写用户名" name="username" id="username" type="text" onblur="check_username();">
+								</div>
+                                <span class="reg_yes" style="display: none;" id="username_yes"></span>
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="c ico_pwd2 inputitem_w">
+                                <i class="reg_icon_font login_icon_n2 "></i>
+								<div class="mui-input-row">
+		
+									<input class="inputitemtxt mui-input-password" onfocus="this.type='password'" placeholder="请填写密码，建议填写字母数字组合" name="password" id="password" type="text" onblur="check_password();">
+								</div>
+                                
+                                <span class="reg_yes" style="display: none;" id="password_yes"></span>
+                                <em class="viewpwd"></em></div>
+                        </dd>
+
+                        {yun:}if $config.reg_passconfirm=='1'{/yun}
+                        <dd>
+                            <div class="c ico_pwd2 inputitem_w">
+                                <i class="reg_icon_font login_icon_n2 "></i>
+								<div class="mui-input-row">
+		
+									<input class="inputitemtxt mui-input-password" onfocus="this.type='password'" placeholder="请确认填写的密码" name="passconfirm" id="passconfirm" type="text" onblur="check_passconfirm();">
+								</div>
+                                <span class="reg_yes" style="display: none;" id="passconfirm_yes"></span>
+                                <em class="viewpwd"></em></div>
+                        </dd>
+                        {yun:}/if{/yun} {yun:}if strpos($config.code_web,"注册会员")!==false{/yun}
+                        <dd>
+                           {yun:}if $config.code_kind==3 || $config.code_kind==4{/yun}
+						<div class="gtdx-captcha">
+							{yun:}if $config.reg_real_name_check == 1{/yun}
+							<div id="bind-captcha" data-id='send_msg_tips' data-type='click'></div>
+							{yun:}else{/yun}
+							<div id="bind-captcha" data-id='subreg' data-type='submit'></div>
+							{yun:}/if{/yun}
+							<input type='hidden' id="geetest_challenge"  name="geetest_challenge" value="">
+							<input type='hidden' id="geetest_validate"  name="geetest_validate" value="">
+							<input type='hidden' id="geetest_seccode"  name="geetest_seccode" value="">
+							<input type='hidden' id="dx_token"  name="dx_token" value="">
+							<input type='hidden' id="popup-submit">	
+							<input type='hidden' id="bind-submit">
+						</div>
+							
+							
+							{yun:}else{/yun}
+
+                            <div class="c ico_name inputitem_w">
+                                <i class="reg_icon_font login_icon_tpyz "></i>
+                                <div class="reg_yzm_box"> 
+								<div class="mui-input-row">
+									<input class="inputitemtxt" placeholder="请填写验证码，点图片换一换" name="checkcode" id="checkcode" type="text" maxlength="6" onblur="check_code()" />
+								</div>
+								
+                                    <div class="rg_img">
+                                        <img id="vcode_img" class="authcode" src="{yun:}$config.sy_wapdomain{/yun}/authcode.inc.php" onclick="checkCode('vcode_img');" />
+                                    </div>
+                                </div>
+                                <span class="reg_yes reg_yes_yz" style="display: none;" id="checkcode_yes"></span>
+                            </div>
+
+                            {yun:}/if{/yun}
+                        </dd>
+                        {yun:}/if{/yun} 
+						{yun:}if $config.reg_real_name_check == 1{/yun}
+						<dd>
+                            <div class="c ico_name inputitem_w">
+                                <i class="reg_icon_font login_icon_n4 "></i>
+                                <input class="inputitemtxt" placeholder="请填写您的手机号码" name="moblie" id="moblie" type="tel" onBlur="check_moblie();" onkeyup="this.value=this.value.replace(/[^0-9]/g,'')">
+                                <span class="reg_yes" style="display: none;" id="moblie_yes"></span>
+                            </div>
+
+                        </dd>
+                        <dd>
+                            <div class="c ico_name inputitem_w">
+                                <i class="reg_icon_font login_icon_n9 "></i>
+                                <div class="mui-input-row">
+									<input class="inputitemtxt" maxlength="6"  placeholder="请填写短信验证码" name="moblie_code" id="moblie_code" type="text" onblur="check_moblie_code()" />
+								</div>
+								
+
+                                <a class="login_m_send2" href="javascript:void(0);" id="send_msg_tips" onclick="sendmsg('vcode_img');"><span id="time">获取验证码</span></a>
+
+                                <span class="reg_yes reg_yes_yz" style="display: none;" id="moblie_code_yes"></span>
+                            </div>
+                        </dd>
+                        {yun:}/if{/yun}
+						{yun:}/if{/yun}
+
+                        <dd class="mt15">
+                        <div class="login_bth">
+                            <input type="hidden" id="send" value="0" />
+                            <input type="hidden" id="isRealnameCheck" value="{yun:}$config.reg_real_name_check{/yun}" />
+                            <input type="submit" name="submit" id="subreg" value="注册" class="inputSubmit">
+                            </div>
+                            <div class="login_otherlogin">
+							
+							{yun:}if $config.reg_moblie=='1' && $type!=2{/yun}
+								<a href="{yun:}url m=wap c=register  type=2{/yun}" class="{yun:}if $type != 2 && $type!=1{/yun}login_wjmm{yun:}/if{/yun}">手机注册</a>
+							{yun:}/if{/yun} 
+							{yun:}if $config.reg_email=='1' && $type!=3{/yun}
+								<a href="{yun:}url m=wap c=register  type=3{/yun}" class="{yun:}if $type != 3&& $type!=2{/yun}login_wjmm{yun:}/if{/yun}">邮箱注册</a>
+							{yun:}/if{/yun} 
+							{yun:}if $config.reg_user=='1' && $type!=1{/yun}
+								<a href="{yun:}url m=wap c=register type=1{/yun}" class="{yun:}if $type != 1&& $type!=3{/yun}login_wjmm{yun:}/if{/yun}">用户名注册</a>
+							{yun:}/if{/yun}
+                             </div>
+                        </dd>
+
+                    </dl>
+                </form>
+                </div>
+
+        </article>
+    </section>
+   
+    <!--注册协议弹出框-->
+    <div style="width:100%;height:100%; background:rgba(51,51,51,0.5); position:fixed;left:0px;top:0px;z-index:1000000;display:none" id="services">
+        <div style="width:100%; position:absolute;left:0px;top:80px;">
+            <div class="reg_xybox">
+                <div class="reg_xybox_tit"><span class="reg_xybox_tit_s">用户协议</span>
+                    <a href="javascript:void(0);" onclick="$('#services').hide();" class="reg_xybox_tit_a"></a>
+                </div>
+                <div class="reg_xybox_p">
+                    {yun:}$xieyi.content{/yun}
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--隐私政策弹出框-->
+    <div style="width:100%;height:100%; background:rgba(51,51,51,0.5); position:fixed;left:0px;top:0px;z-index:1000000;display:none" id="yinsi">
+        <div style="width:100%; position:absolute;left:0px;top:80px;">
+            <div class="reg_xybox">
+                <div class="reg_xybox_tit"><span class="reg_xybox_tit_s">隐私政策</span>
+                    <a href="javascript:void(0);" onclick="$('#yinsi').hide();" class="reg_xybox_tit_a"></a>
+                </div>
+                <div class="reg_xybox_p">
+                    {yun:}$yinsi.content{/yun}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="" style="display: none;" id="written_off">
+        <div style="padding:10px;width:320px; background:#fff;">
+            <div class="reg_have_tip">
+                <i class="reg_have_tip_icon"></i>
+                <div class="reg_have_tip_tit"><span id="zy_type">该手机号已被注册</span></div>
+                <div class="reg_have_tip_zc" id="zy_name"></div>
+            </div>
+            <div class="reg_have_tip_p">
+                1.如果是你本人，但不记得密码，您可以找回密码
+                <a href="{yun:}url m=wap c=forgetpw{/yun}" class="reg_have_tip_bth">找回密码</a>
+            </div>
+            <div id="jcbind" class="reg_have_tip_p">
+				<span id="desc_toast">2. 解除手机号与该账号的绑定，解除绑定后，您无法 继续用该手机号登录</span>
+                <a href="javascript:void(0);" onclick="CheckPW();" class="reg_have_tip_bth">解除绑定</a>
+            </div>
+            <div class="reg_have_tip_kf">如有疑问可拨打客服服务热线：{yun:}$config.sy_freewebtel{/yun}</div>
+            <input type="hidden" id="zy_uid" value="" />
+            <input type="hidden" id="zy_mobile" value="" />
+       		<input type="hidden" id="zy_email" value="" />
+
+        </div>
+    </div>
+
+    <div class="tiny_show_tckbox" style="position:absolute;left:50%;bottom:220px; margin-left:-85px; z-index:10000;display:none;" id="postpw">
+        <div class="tiny_show_tckbox_cont pw">
+        </div>
+    </div>
+	
+	<div style="width:100%; text-align:center; font-size:12px;color:#999">
+     	<input type="checkbox" id="xieyi" value="1" checked>
+    	<em style="width:100%">注册即表示阅读并同意《<a href="javascript:void(0);" onclick="showservices()" style="color:#007aff">用户协议</a>》&《<a href="javascript:void(0);" onclick="showyinsi()" style="color:#007aff">隐私政策</a>》</em>
+    </div>
+                     
+                        
+    <script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js?v={yun:}$config.cachecode{/yun}" language="javascript"></script>
+    <script src="{yun:}$wap_style{/yun}/js/layer/layer.m.js?v={yun:}$config.cachecode{/yun}" language="javascript"></script>
+    <script src="{yun:}$wap_style{/yun}/js/prefixfree.min.js?v={yun:}$config.cachecode{/yun}" language="javascript"></script>
+	
+    <script src="{yun:}$wap_style{/yun}/js/public.js?v={yun:}$config.cachecode{/yun}" language="javascript"></script>
+    <script src="{yun:}$wap_style{/yun}/js/reg_ajax.js?v={yun:}$config.cachecode{/yun}" language="javascript"></script>
+   {yun:}if $config.code_kind == 3{/yun}
+	<script src="{yun:}$config.sy_weburl{/yun}/js/geetest/gt.js?v={yun:}$config.cachecode{/yun}"></script>
+	<script src="{yun:}$config.sy_weburl{/yun}/js/geetest/mobile.js?v={yun:}$config.cachecode{/yun}" type="text/javascript"></script>
+	{yun:}elseif $config.code_kind == 4{/yun}
+	<script src="https://cdn.dingxiang-inc.com/ctu-group/captcha-ui/index.js"></script>
+	<script>var dxappid = "{yun:}$config.sy_dxappid{/yun}";</script>
+	<script src="{yun:}$config.sy_weburl{/yun}/js/dingxiang/pc.js?v={yun:}$config.cachecode{/yun}" type="text/javascript"></script>
+	{yun:}/if{/yun}
+	<script src="{yun:}$config_wapdomain{/yun}/js/mui/mui.min.js?v={yun:}$config.cachecode{/yun}" language="javascript"></script>
+    {yun:}include file="$wapstyle/footer.htm"{/yun}

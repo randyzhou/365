@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<link href="images/reset.css?v={yun:}$config.cachecode{/yun}" rel="stylesheet" type="text/css" />
+		<link href="images/system.css?v={yun:}$config.cachecode{/yun}" rel="stylesheet" type="text/css" />
+		<link href="images/table_form.css?v={yun:}$config.cachecode{/yun}" rel="stylesheet" type="text/css" />
+		<script src="../js/jquery-1.8.0.min.js?v={yun:}$config.cachecode{/yun}"></script>
+		<link href="../js/layui/css/layui.css?v={yun:}$config.cachecode{/yun}" rel="stylesheet" type="text/css" />
+		<script src="../js/layui/layui.js?v={yun:}$config.cachecode{/yun}"></script>
+		<script src="../js/layui/phpyun_layer.js?v={yun:}$config.cachecode{/yun}"></script>
+		<script src="js/admin_public.js?v={yun:}$config.cachecode{/yun}" type="text/javascript"></script>
+		<title>后台管理</title>
+	</head>
+	<body class="body_ifm">
+		<div class="infoboxp">
+			<div class="main_tag">
+				<div class="admin_new_tip">
+					<a href="javascript:;" class="admin_new_tip_close"></a>
+					<a href="javascript:;" class="admin_new_tip_open" style="display:none;"></a>
+					<div class="admin_new_tit"><i class="admin_new_tit_icon"></i>操作提示</div>
+					<div class="admin_new_tip_list_cont">
+						<div class="admin_new_tip_list">阿里云OSS设置。</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div style="height:10px;"></div>
+				<div class="tag_box">
+					<div>
+						<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+						<form method="post" target="supportiframe" action="index.php?m=admin_oss_config&c=save" onsubmit="return checkForm();" class="layui-form">
+							<table width="100%" class="table_form">
+								<tr class="admin_table_trbg">
+									<th width="200" bgcolor="#f0f6fb"><span class="admin_bold">参数说明</span></th>
+									<td bgcolor="#f0f6fb"><span class="admin_bold">参数值</span></td>
+								</tr>
+
+								<tr>
+									<th width="160">阿里云OSS存储：</th>
+									<td>
+										<div class="layui-form-item">
+											<div class="layui-input-block">
+												<input type="checkbox" name="sy_oss" lay-skin="switch" lay-text="开启|关闭" lay-filter="oss" {yun:}if $config.sy_oss=="1" {/yun}checked{yun:}/if{/yun}/> <span class="admin_web_tip">关闭时文件上传到网站服务器，开启后网站文件将上传到阿里云OSS</span>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th width="160">OSS存储地址：</th>
+									<td>
+										<div class="layui-form-item">
+											<div class="layui-input-block">
+												<div class="layui-input-inline">
+													<input name="sy_ossurl" id="sy_ossurl" autocomplete="off" class="layui-input" type="text" value="{yun:}$config.sy_ossurl{/yun}"size="50" />
+												</div>
+												<span class="admin_web_tip">提示：阿里云OSS远程存储地址, 如http://img.hr135.com</span>
+											</div>
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<th width="160">Access Key ID：</th>
+									<td>
+										<div class="layui-form-item">
+											<div class="layui-input-block">
+												<div class="layui-input-inline">
+													<input name="access_id" id="access_id" autocomplete="off" class="layui-input" type="text" value="{yun:}$oss_data.access_id{/yun}"size="50" />
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<th width="160">Access Key Secret：</th>
+									<td>
+										<div class="layui-form-item">
+											<div class="layui-input-block">
+												<div class="layui-input-inline">
+													<input name="access_key" id="access_key" autocomplete="off" class="layui-input" type="text" value="{yun:}$oss_data.access_key{/yun}"size="50" />
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th width="160">EndPoint：</th>
+									<td>
+										<div class="layui-form-item">
+											<div class="layui-input-block">
+												<div class="layui-input-inline">
+													<input name="endpoint" id="endpoint" autocomplete="off" class="layui-input" type="text" value="{yun:}$oss_data.endpoint{/yun}"size="50" />
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th width="160">Bucket：</th>
+									<td>
+										<div class="layui-form-item">
+											<div class="layui-input-block">
+												<div class="layui-input-inline">
+													<input name="bucket" id="bucket" autocomplete="off" class="layui-input" type="text" value="{yun:}$oss_data.bucket{/yun}" size="50" />
+												</div>
+												<span class="admin_web_tip">提示：存储空间名称</span>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr class="admin_table_trbg">
+									<th>&nbsp;</th>
+									<td colspan="2" align="left">
+										<input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+										<input class="layui-btn layui-btn-normal" name="oss_config" type="submit" value="提交" />&nbsp;&nbsp;
+										<input class="layui-btn layui-btn-normal" type="reset" value="重置" />
+									</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			layui.use(['layer', 'form'], function() {
+				var layer = layui.layer,
+					form = layui.form,
+					$ = layui.$;
+			});
+			function checkForm(){
+				var sy_oss = $("input[name=sy_oss]").is(":checked") ? 1 : 2;
+				var sy_ossurl = $("#sy_ossurl").val();
+				if(sy_oss == 1 && sy_ossurl == ''){
+					parent.layer.msg('请填写阿里云OSS地址',2,8);
+					return false;
+				}
+				loadlayer();
+			}
+		</script>
+
+	</body>
+</html>

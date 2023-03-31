@@ -1,0 +1,61 @@
+/* TODO */
+.MultiCheck { 
+    float: left; 
+    font-weight: 600;
+}
+
+.MultiCheck_Status {
+    position: relative;
+    background-color: #d1d1d1;
+    padding: 12px
+}
+
+.MultiCheck_Box {
+    float: left;
+    background-color: #f5f5f7;
+    padding: 12px
+}
+
+.MultiCheck_Body {
+    float: left;
+    background-color: #ffffff;
+    border: 1px #ddd solid;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.MultiCheck_Columns { 
+    float: left;
+    margin-right: 25px;
+}
+
+.MultiCheck_Columns input[type=checkbox] {
+    cursor: pointer;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    font-size: 14px;
+    margin-right: 5px
+}
+ 
+.MultiCheck_Columns input[type=checkbox]::after {
+    position: absolute;
+    top: 0;
+    color: #000000;
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    visibility: visible;
+    padding-left: 0px;
+    text-align: center;
+    content: ' ';
+    border-radius: 3px
+}
+ 
+.MultiCheck_Columns input[type=checkbox]:checked::after {
+    content: "✓";
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #000000;
+}

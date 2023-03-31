@@ -1,0 +1,33 @@
+<?php
+$ad_label=array();
+$ad_label['3']['ad_2']['html']="<a href='http://120.77.37.135/index.php?c=clickhits&id=2' target='_blank' rel='nofollow'><img src='http://120.77.37.135/data/upload/pimg/20201031/16071254174.jpg'    ></a>";
+$ad_label['3']['ad_2']['pic']="http://120.77.37.135/data/upload/pimg/20201031/16071254174.jpg";
+$ad_label['3']['ad_2']['src']="http://120.77.37.135/index.php?c=clickhits&id=2";
+$ad_label['3']['ad_2']['start']="1514736000";
+$ad_label['3']['ad_2']['end']="1673711999";
+$ad_label['3']['ad_2']['type']="pic";
+$ad_label['3']['ad_2']['name']="首页幻灯2";
+$ad_label['3']['ad_2']['did']="0";
+$ad_label['3']['ad_2']['id']="2";
+$ad_label['3']['ad_2']['class_id']="3";
+$ad_label['91']['ad_13']['html']="<a href='http://120.77.37.135/index.php?c=clickhits&id=13' target='_blank' rel='nofollow'><img src='http://120.77.37.135/data/upload/pimg/20170418/15604592383.png'    ></a>";
+$ad_label['91']['ad_13']['pic']="http://120.77.37.135/data/upload/pimg/20170418/15604592383.png";
+$ad_label['91']['ad_13']['src']="http://120.77.37.135/index.php?c=clickhits&id=13";
+$ad_label['91']['ad_13']['start']="1514736000";
+$ad_label['91']['ad_13']['end']="1612367999";
+$ad_label['91']['ad_13']['type']="pic";
+$ad_label['91']['ad_13']['name']="首页名企左侧banner";
+$ad_label['91']['ad_13']['did']="0";
+$ad_label['91']['ad_13']['id']="13";
+$ad_label['91']['ad_13']['class_id']="91";
+$ad_label['73']['ad_6']['html']="<a href='http://120.77.37.135/index.php?c=clickhits&id=6' target='_blank' rel='nofollow'><img src='http://120.77.37.135/data/upload/pimg/20170418/14934176012.PNG'    ></a>";
+$ad_label['73']['ad_6']['pic']="http://120.77.37.135/data/upload/pimg/20170418/14934176012.PNG";
+$ad_label['73']['ad_6']['src']="http://120.77.37.135/index.php?c=clickhits&id=6";
+$ad_label['73']['ad_6']['start']="1514736000";
+$ad_label['73']['ad_6']['end']="1704383999";
+$ad_label['73']['ad_6']['type']="pic";
+$ad_label['73']['ad_6']['name']="首页移动广告小幅";
+$ad_label['73']['ad_6']['did']="0";
+$ad_label['73']['ad_6']['id']="6";
+$ad_label['73']['ad_6']['class_id']="73";
+?>

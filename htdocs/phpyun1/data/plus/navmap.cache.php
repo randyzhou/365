@@ -1,0 +1,9 @@
+<?php 
+$navmap=array('0'=>array('0'=>array('id'=>'24','name'=>'普工专区','url'=>'tiny/','furl'=>'','eject'=>'0','type'=>'1')
+,'1'=>array('id'=>'20','name'=>'HR工具箱','url'=>'hr/','furl'=>'','eject'=>'0','type'=>'1')
+,'2'=>array('id'=>'23','name'=>'附近职位','url'=>'map/','furl'=>'','eject'=>'0','type'=>'1')
+,'3'=>array('id'=>'22','name'=>'找企业','url'=>'company/','furl'=>'','eject'=>'0','type'=>'1')
+)
+)
+; 
+?>

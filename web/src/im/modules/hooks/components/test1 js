@@ -1,0 +1,253 @@
+import axios from 'axios';
+
+
+function useBodyScrollPosition() {
+  const [scrollPosition, setScrollPosition] = React.useState(null);
+
+  React.useEffect(() => {
+    const handleScroll = () => setScrollPosition(window.scrollY);
+    document.addEventListener('scroll', handleScroll);
+    return () =>
+      document.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return scrollPosition;
+}
+
+
+function Form() {
+  const [text, updateText] = React.useState('');
+  const textRef = React.useRef();
+
+  React.useLayoutEffect(() => {
+    textRef.current = text; // 将 text 写入到 ref
+  });
+
+  const handleSubmit = React.useCallback(() => {
+    const currentText = textRef.current; // 从 ref 中读取 text
+    alert(currentText);
+  }, [textRef]); // handleSubmit 只会依赖 textRef 的变化。不会在 text 改变时更新
+
+  const handleSubmit12 = React.useCallback((props1) => {
+    console.log(props1)
+    alert(text)
+  },[text])
+
+  const handleSubmit1 = (props1) => {
+    console.log(props1)
+    alert(text)
+  }
+
+  console.log('aaa')
+  return (
+    <>
+      <input value={text} onChange={e => updateText(e.target.value)} />
+      <button onClick={e=>handleSubmit1()}>提交</button>
+    </>
+  );
+}
+
+function Child(props){
+  console.log('rerender:')
+  const [result,setResult] = React.useState('')
+  const { fetchData } = props;
+
+  React.useEffect(() => {
+    fetchData().then(result => {
+       setResult(result);
+    })
+   },[fetchData])
+ 
+  return (
+    <>
+      <div>query:{props.query}</div>
+      <div>result:{result}</div>
+    </>
+  )
+ }
+
+ function Parent(){
+  const [query,setQuery] = React.useState('');
+
+  let bsp = useBodyScrollPosition()
+
+  const fetchData = () => {
+    const url = Config.api+'user/list?token=30df7908b558cf11106d0c32fae9e66d&uptime=1645926623766&username=' + query
+    return fetch(url).then(x => x.text())
+  }
+  
+  console.log(bsp)
+
+  return (
+     <div>
+      <input onChange={e => setQuery(e.target.value)} value={query} />
+      <Child fetchData={fetchData} query={query}/>
+     </div>
+   )
+ }
+
+function Example() {
+  const [count, setCount] = React.useState(0);
+
+  function handleAlertClick() {
+    setTimeout(() => {
+      alert('You clicked on: ' + count);
+    }, 3000);
+  }
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+      <button onClick={handleAlertClick}>
+        Show alert
+      </button>
+    </div>
+  );
+}
+
+
+function SearchResults() {
+  const [data, setData] = React.useState({ hits: [] });
+  const [query, setQuery] = React.useState('react');
+
+  React.useEffect(() => {
+    let ignore = false;
+
+    async function fetchData() {
+      const result = await axios('https://hn.algolia.com/api/v1/search?query=' + query);
+      if (!ignore) setData(result.data);
+    }
+
+    fetchData();
+    return () => { ignore = true; }
+  }, [query]);
+
+  return (
+    <>
+      <input value={query} onChange={e => setQuery(e.target.value)} />
+      <ul>
+        {data.hits.map(item => (
+          <li key={item.objectID}>
+            <a href={item.url}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+function Counter() {
+  const [count, setCount] = React.useState(0);
+  const prevCount = usePrevious(count);
+  return <h1 onClick={e=>setCount(count+1)}>Now: {count}, before: {prevCount}</h1>;
+}
+
+function Child1() {
+  console.log('child render');
+  return <span>child</span>;
+}
+
+function App() {
+  const [num, updateNum] = React.useState(0);
+  console.log('App render', num);
+
+  React.useEffect(() => {
+    setInterval(() => {
+      console.log("setInterval")
+      updateNum(num+1);
+    }, 1000)
+  }, [])
+
+  return <Child1/>;
+}
+
+
+class Abc1 extends React.Component{
+  constructor(props){
+    super(props)
+  }
+
+  state = {
+    counter: 0
+  }
+
+  componentWillReceiveProps = (nextProps) => {
+    this.setState({counter: nextProps.counter})
+  }
+
+  render(){
+    console.log('Abc1')
+    return (
+      <div>{this.state.counter}</div>
+    )
+  }
+}
+
+const Abc = (props) => {
+  const [counter,setCounter] = React.useState(0)
+  React.useEffect(()=>{
+    setCounter(props.counter)
+  },[props.counter])
+
+//  aaa(props)
+
+  console.log('Abc')
+
+  return (
+    <div>{counter}</div>
+  )
+
+}
+
+class EmailInput extends React.Component {
+  state = { email: this.props.email };
+
+  render() {
+    return <input onChange={this.handleChange} value={this.state.email} />;
+  }
+
+  handleChange = event => {
+    this.setState({ email: event.target.value });
+  };
+
+  componentWillReceiveProps123(nextProps) {
+    // 这会覆盖所有组件内的 state 更新！
+    // 不要这样做。
+    this.setState({ email: nextProps.email });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // 只要 props.email 改变，就改变 state
+    if (nextProps.email !== this.props.email) {
+      this.setState({
+        email: nextProps.email
+      });
+    }
+  }
+
+}
+
+export default class extends React.Component{
+  constructor(props){
+    super(props)
+  }
+  state = {
+    email: "randyzhou@163.com"
+  }
+
+  handleClick = () => {
+    this.setState({email: 'zrj@qq.com'})
+  }
+
+  render(){
+    return (
+      <div>
+        <EmailInput email={this.state.email} />
+        <button onClick={this.handleClick}>点击修改</button>
+      </div>
+    )
+  }
+}

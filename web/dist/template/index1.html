@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<div id="netloading" style="display:none; text-align: center;height: 100%; width:100%;color: brown;position: fixed;top: 1px;z-index: 100000000; background-color: ghostwhite;">
+  <img src="image/start15362048.png" style="width:100%;height:100%">
+  <img src="image/loading.jpg" id="loading_img" style="width:35px;position:absolute;top:70px">
+</div>
+<html lang="zh-cn">
+<head>
+  <title>365</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">    
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+  <link rel="stylesheet" type="text/css" href="script/base/main.css">
+  <link rel="stylesheet" type="text/css" href="script/base/antd-mobile/dist/antd-mobile.min.css">
+  <meta name="keywords" content="365im" data-vue-meta="true">
+  <meta name="description" content="365im" data-vue-meta="true">
+  <script>
+    const difTime = new Date().getTime() - performance.timing.navigationStart
+    console.log(difTime)
+
+    window.onload = function(){
+      console.log(new Date().getTime() - performance.timing.navigationStart)
+      if(typeof(window.api) != "undefined"){
+        setLocation();
+      }
+    }
+  </script>
+</head>
+
+<body id="mainbody" style="max-width:400px">
+    <div id="netloading1" style="display:none; text-align: center;height: 39px;line-height: 39px;color: brown;position: fixed;top: 1px;z-index: 100000000;width: 200px; background-color: ghostwhite;"><img src="image/loading.jpg" style="width:13px"></div>    
+    <div id="main" style="height:100%;width:100%">
+      <div id="main-content" style="margin:0 auto;margin-top:0px;height:100%;width:100%"></div>
+    </div>
+
+    <table id="login_div" style="z-index: 100000; width: 100%; height: 100%;  position: fixed; display: none; text-align: center;">
+      <tbody>
+        <tr><td colspan="3" style="height:30px"></td></tr>
+        <tr>
+        <td style="width:10px"></td>
+        <td style="text-align:center; vertical-align:top; padding:0px">
+
+          <form id="login_post" style="margin: 0 auto; width:100%;height:100%">
+            <table style="height:100%">
+              <tr>
+                <td style="vertical-align: top">
+                  <table style="width:100%;margin-top:20px"><tr>
+                    <td style="width:40px;text-align:center;height:50px">
+                      <span style="padding:10px;font-size:16px;font-weight:bold"></span>
+                    </td>
+                    <td style="text-align:center">
+                      <img src="image/365.jpeg" style="width:100px;border-radius: 18px"/>
+                    </td>
+                    <td style="width:40px;text-align:center;height:50px">
+                      <span style="padding:10px;font-size:16px;font-weight:bold"></span>
+                    </td>
+                  </tr></table>
+
+                  <input id="login_type" name="LoginForm[logintype]" type="hidden" value="login_username">
+                  <div id="login_username" style="display:block;width:100%;margin-top:10px;border-Bottom:1px #ccc solid">
+                    <table style="width:97%">
+                      <tr>
+                        <td>
+                          <input id="login_username_input" maxlength="13" name="LoginForm[username]" style="display:block;width:97%;height:40px;border:0px solid #ccc;" placeholder="请输入用户名称" value="">
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div id="login_mobile" style="display:none;width:100%;margin-top:10px;border-Bottom:1px #ccc solid;">
+                    <table style="width:97%">
+                      <tr>
+                        <td>
+                          <input id="login_mobile_input" type="tel" maxlength="13" name="LoginForm[mobile]" style="width:97%;height:40px;border:0px solid #ccc;" placeholder="请输入手机号码" value="">
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div style="display:block;width:100%;margin-top:10px;border-bottom:1px #ccc solid;">
+                    <table style="width:97%">
+                      <tr><td>
+                        <input type="password" id="userpassword" name="LoginForm[password]" style="width:97%;height:40px;border:0px" placeholder="请输入登录密码">
+                      </td></tr>
+                    </table>
+                  </div>
+                  <div id="user_login" style="display:inline-block;text-align:center;cursor:pointer;margin-top:20px;width:100%;height:40px;line-height:40px;border:1px darkseagreen solid;border-radius:5px;background-color: darkseagreen">
+                    <span style="padding:5px;color:white">登陆</span>
+                  </div>
+                </td>
+              </tr>
+              <tr style="height:45px">
+                <td style="text-align: center">
+                  <span class="login_type_td" target_name="login_username" style="padding:5px;color:brown;display:none">用户登录</span>
+                  <span class="login_type_td" target_name="login_mobile" style="padding:5px;color:brown">手机登录</span>
+                  <span id="user_join_span" style="padding:5px;color:brown">注册用户</span>
+                  <span id="user_getpassword_span" style="padding:5px;color:brown">忘记密码</span>
+                </td>
+              </tr>
+            </table>
+          </form>
+
+          <form id="user_join" style="position:absolute; top:0px; left:0px; background-color:white; margin: 0 auto; width:100%; height:100%; display:none;">
+              <table style="width:99%;margin-top:0px">
+                <tr><td colspan="3" style="height:30px;text-align: left">
+                  <span id="userjoincancel" style="font-size:16px;color:darkgreen;margin-left:10px">取消</span>
+                </td></tr>
+              <tr>
+                <td style="width:40px;text-align:center;height:50px">
+                  <span style="padding:10px;font-size:16px;font-weight:bold"></span>
+                </td>
+                <td style="text-align:center">
+                  <table style="width:100%;margin-top:20px"><tr>
+                      <td style="width:40px;text-align:center;height:50px">
+                        <span style="padding:10px;font-size:16px;font-weight:bold"></span>
+                      </td>
+                      <td style="text-align:center">
+                        <img src="image/365.jpeg" style="width:100px;border-radius: 18px"/>
+                      </td>
+                      <td style="width:40px;text-align:center;height:50px">
+                        <span style="padding:10px;font-size:16px;font-weight:bold"></span>
+                      </td>
+                    </tr></table>
+                </td>
+                <td style="width:40px;text-align:center;height:50px">
+                  <span style="padding:10px;font-size:16px;font-weight:bold"></span>
+                </td>
+              </tr>
+            </table>
+            <div style="padding:10px">
+              <table style="width:100%;margin-top:10px"><tbody>
+              <tr><td style="height:40px;border-bottom:1px solid #ccc;">
+                <div>
+                  <input id="dv_username" type="text" name="LoginForm[username]" placeholder="登录用户名,只能为1-5个汉字" maxlength="5" minlenth="1" style="width:150px;height:30px;" value="">
+                  <span id="usernameError" style="display:none;color:red;float:right;height:30px;line-height:30px">该会员名已被注册！</span>
+                  <span id="usernameRight" style="display:none;color:green;float:right;height:30px;line-height:30px">该会员名有效！</span>
+                </div>
+              </td></tr>
+              <tr><td style="height:40px;line-height:40px;border-bottom:1px solid #ccc; padding-left:3px">
+                性别：
+                <select name="usersex" style="border:0px;background-color: white;-webkit-appearance: none">
+                  <option value=1 selected>男</option>
+                  <option value=2>女</option>
+                </select>  
+              <tr><td style="height:50px;border-bottom:1px solid #ccc;">
+                <input id="password" type="password" name="LoginForm[password]" placeholder="登录密码" style="padding:3px;width:97%;height:40px;line-height:40px;">
+                <div id="passswordError" style="display:none;color:red">输入的密码格式不符合要求！</div>
+              </td></tr>
+              <tr><td style="height:60px;border-bottom:1px solid #ccc;">
+                <input id="verifyPasssword" type="password" placeholder="确认密码" style="padding:3px;width:97%;height:40px;line-height:40px;">
+                <div id="verifyPassswordError" style="display:none;color:red">两次输入密码不一致！</div>
+              </td></tr>
+              <tr>
+                <td style="text-align:center;height:50px;line-height:50px">
+                  <button id="userjoin_submit" disabled="disabled" style="display:inline-block;cursor:pointer;margin-top:20px;width:99%;height:40px;line-height:40px;background-color: gainsboro; border:1px darkseagreen solid;border-radius:5px">
+                    <span style="color:white;padding:10px">提交</span>
+                  </button>
+                </td>
+              </tr>
+              </tbody></table>
+            </div>
+          </form>
+
+          <form id="mobile_join" style="position: absolute; top:0px; left:0px; z-index:100000; margin: 0 auto; width:100%; height:100%; background-color:white; display:none;">
+            <table style="width:100%;margin-top:20px">
+              <tr><td colspan="3" style="height:30px;text-align: left">
+                  <span id="login_mobile_vericode123_cancel" style="font-size:16px;color:darkgreen;margin-left:10px">取消</span>
+              </td></tr>
+              <tr>
+                <td style="width:40px;text-align:center;height:50px">
+                </td>
+                <td style="text-align:center">
+                  <span style="font-size:20px;font-weight:bold">365手机注册</span>
+                </td>
+                <td style="width:40px;text-align:center;height:50px">
+                  <span style="padding:10px;font-size:16px;font-weight:bold"></span>
+                </td>
+              </tr>
+            </table>
+            <table style="width:100%;margin-top:20px"><tr>
+              <td style="width:10px"></td>
+              <td style="text-align:center">
+                <table style="width:100%;margin-top:10px;border:1px #ccc solid">
+                  <tr>
+                    <td style="width:60px;text-align:center">
+                      + 86 <font style="font-size:10px">▼</font>
+                    </td>
+                    <td>
+                      <input type="tel" id="login_vericode_mobile" maxlength="11" style="width:97%;height:40px;border:0px solid #ccc;" placeholder="请输入手机号码" value="">
+                    </td>
+                  </tr>
+                </table>
+                <table style="width:100%;margin-top:10px;border:1px #ccc solid">
+                  <tr>
+                    <td>
+                      <input id="login_vericode" maxLength="4" type="number" disabled="disabled" style="width:97%;background-color:white;height:40px;border:0px" placeholder="请输入验证码" />
+                    </td>
+                    <td id="vericodeTd" style="width:135px;text-align:center;background-color:#ccc">
+                      <button id="send_login_vericode123" disabled="disabled"><span id="vericharSpan">发送验证码</span><span id="veriShow" style="display:none">(<span id="verishowSpan">60</span>)秒</span></button>
+                    </td>
+                  </tr>
+                </table>
+                <button id="mobile_join_next" disabled="disabled" style="display:inline-block;cursor:pointer;margin-top:20px;width:100%;height:40px;line-height:40px;border:1px indianred solid;border-radius:20px">
+                  <span style="border-radius:3px;padding:10px">下一步</span>
+                </button>
+              </td>  
+              <td style="width:10px"></td>
+            </tr></table>  
+          </form>
+
+          <form id="forget_password" style="position: absolute; top:0px; left:0px; z-index:100000; margin: 0 auto; width:100%; height:100%; background-color:white; display:none;">
+            <table style="width:100%;margin-top:0px">
+              <tr><td colspan="3" style="height:30px;text-align: left">
+                  <span id="login_mobile_vericode_cancel" style="font-size:16px;color:darkgreen;margin-left:10px">取消</span>
+              </td></tr>
+              <tr>
+                <td style="width:40px;text-align:center;height:50px">
+                </td>
+                <td style="text-align:center">
+                  <table style="width:100%;margin-top:20px"><tr>
+                      <td style="width:40px;text-align:center;height:50px">
+                        <span style="padding:10px;font-size:16px;font-weight:bold"></span>
+                      </td>
+                      <td style="text-align:center">
+                        <img src="image/365.jpeg" style="width:100px;border-radius: 18px"/>
+                      </td>
+                      <td style="width:40px;text-align:center;height:50px">
+                        <span style="padding:10px;font-size:16px;font-weight:bold"></span>
+                      </td>
+                    </tr></table>
+                </td>
+                <td style="width:40px;text-align:center;height:50px">
+                  <span style="padding:10px;font-size:16px;font-weight:bold"></span>
+                </td>
+              </tr>
+            </table>
+            <table style="width:100%;margin-top:20px"><tr>
+              <td style="width:10px"></td>
+              <td style="text-align:center">
+                <table style="width:100%;margin-top:10px;border-bottom:solid 1px #ccc">
+                  <tr>
+                    <td style="width:100px;text-align:left">
+                      用户名
+                    </td>
+                    <td>
+                      <input id="forget_username" style="width:95%;height:40px" placeholder="请输入用户名" value="">
+                    </td>
+                    <td style="width:10px"></td>
+                  </tr>
+                </table>
+                <table style="width:100%;margin-top:10px;border-bottom:1px #ccc solid">
+                  <tr>
+                    <td style="width:100px">
+                        <select id="forget_type" style="text-align:left;width:100%;height:40px;border:0px;background-color: white">
+                          <option value="">任选一项</option>
+                          <option value="mobile">手机号码</option>
+                          <option value="email">邮箱</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input id="forget_value" style="width:95%;height:40px;" placeholder="请输入对应选择项的内容" />
+                    </td>
+                    <td style="width:10px"></td>
+                  </tr>
+                </table>
+                <button id="forget_password_submit" disabled="disabled" style="display:inline-block;cursor:pointer;margin-top:20px;width:100%;height:40px;line-height:40px;border:1px darkseagreen solid;background-color:darkseagreen;border-radius: 5px">
+                  <span style="border-radius:3px;padding:10px;color:white">登录</span>
+                </button>
+              </td>  
+              <td style="width:10px"></td>
+            </tr></table>  
+          </form>
+
+          <form id="login_mobile_vericode123" style="position: absolute; top:0px; left:0px; z-index:100000; margin: 0 auto; width:100%; height:100%; background-color:white; display:none;">
+            <table style="width:100%;margin-top:20px">
+              <tr><td colspan="3" style="height:30px;text-align: left">
+                  <span id="login_mobile_vericode123_cancel" style="font-size:16px;color:darkgreen;margin-left:10px">取消</span>
+              </td></tr>
+              <tr>
+                <td style="width:40px;text-align:center;height:50px">
+                  <span id="login_mobile_vericode_cancel" style="padding:10px;font-size:16px;font-weight:bold"><</span>
+                </td>
+                <td style="text-align:center">
+                  <span style="font-size:20px;font-weight:bold">365手机验证码登录</span>
+                </td>
+                <td style="width:40px;text-align:center;height:50px">
+                  <span style="padding:10px;font-size:16px;font-weight:bold"></span>
+                </td>
+              </tr>
+            </table>
+            <table style="width:100%;margin-top:20px"><tr>
+              <td style="width:10px"></td>
+              <td style="text-align:center">
+                <table style="width:100%;margin-top:10px;border:1px #ccc solid">
+                  <tr>
+                    <td style="width:60px;text-align:center">
+                      + 86 <font style="font-size:10px">▼</font>
+                    </td>
+                    <td>
+                      <input type="tel" id="login_vericode_mobile123" maxlength="11" style="width:97%;height:40px;border:0px solid #ccc;" placeholder="请输入手机号码" value="">
+                    </td>
+                  </tr>
+                </table>
+                <table style="width:100%;margin-top:10px;border:1px #ccc solid">
+                  <tr>
+                    <td>
+                      <input id="login_vericode1234" maxLength="4" type="number" disabled="disabled" style="width:97%;background-color:white;height:40px;border:0px" placeholder="请输入验证码" />
+                    </td>
+                    <td id="vericodeTd" style="width:135px;text-align:center;background-color:#ccc">
+                      <button id="send_login_vericode" disabled="disabled"><span id="vericharSpan">发送验证码</span><span id="veriShow" style="display:none">(<span id="verishowSpan">60</span>)秒</span></button>
+                    </td>
+                  </tr>
+                </table>
+                <button id="login_vericode_submit" disabled="disabled" style="display:inline-block;cursor:pointer;margin-top:20px;width:100%;height:40px;line-height:40px;border:1px indianred solid;border-radius:20px">
+                  <span style="border-radius:3px;padding:10px">登录</span>
+                </button>
+              </td>  
+              <td style="width:10px"></td>
+            </tr></table>  
+          </form>
+
+        </td>  
+        <td style="width:10px"></td>
+      </tr></tbody>
+    </table>
+
+    <div id="resultMsg" style="position:fixed; word-break:break-all; width:250px; height:100px; line-height:100px; text-align:center; border:1px #cccccc solid; border-radius:5px; z-index:1000000000; background-color:white; display:none">
+      <span style="display:inline-block;line-height:30px"></span>
+    </div>
+</body>
+</html>
+<script>
+  document.getElementById("loading_img").style.left = (parseInt(window.innerWidth/2)-17)+"px";
+</script>
+<script src="script/base/jquery-2.min.js"></script>
+<script src="configs/app.js"></script>
+<script src="script/login.js"></script>
+<script src="script/start.js"></script>

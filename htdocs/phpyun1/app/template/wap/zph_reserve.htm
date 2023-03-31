@@ -1,0 +1,90 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div id="bg" class="bg" style="width:100%;height:100%;background-color:#000;opacity:0.3;display:none; position:fixed;left:0px;top:0px;filter: alpha(opacity=30); z-index:100"></div>
+<section>
+    <div class="zph_show_box" >
+        <div class="zph_bg_name">
+            <h2> 
+            	{yun:}$Info.title{/yun}
+				
+       		</h2>
+            {yun:}if $Info.stime<'0'&&$Info.etime>'0'{/yun}
+					<div class="zph_zt">已开始</div>
+				{yun:}elseif $Info.stime>'0'{/yun}
+					<div class="zph_zt zph_zt_yd">预定中</div>
+				{yun:}/if{/yun}
+                  </div> 
+          
+     
+     <div class="zphtime"><i class="zphtime_icon"></i>{yun:}$Info.starttime|date_format:"%Y-%m-%d"{/yun} 至 {yun:}$Info.endtime|date_format:"%Y-%m-%d"{/yun}</div>
+        <div class="zphshow_tel"><i class="zphshow_tel_icon"></i>{yun:}$Info.phone{/yun} ({yun:}$Info.user{/yun})</div>
+          {yun:}if $Info.address{/yun}
+         <div class="zphadd"><i class="zphadd_icon"></i>{yun:}$Info.address{/yun}</div>
+         {yun:}/if{/yun}
+       {yun:}if $Info.organizers{/yun}
+        <div class="zphadd"><i class="zphzbf_icon"></i>主&nbsp;  办&nbsp; 方：{yun:}$Info.organizers{/yun}</div>
+                {yun:}/if{/yun} 
+             {yun:}if $Info.traffic{/yun}
+           <div class="zphadd"><i class="zphxl_icon"></i>交通路线：{yun:}$Info.traffic{/yun}</div>
+      
+         {yun:}/if{/yun}
+    </div>
+</section>
+<section>
+    {yun:}if $space.pic_n{/yun}  
+	<div class="zph_bg_pd mt15">
+        <div class="wap_title"><span class="">招聘会展位图</span></div>
+        <div class="fairs_display">
+            <img src="{yun:}$space.pic_n{/yun}" class="png" style="max-width:100%" />
+		</div> 
+	</div>
+    {yun:}/if{/yun}
+	<div class="zph_show_zwcontent mt15">
+        <div class="wap_title"><span class="">招聘会展位在线预订</span></div>
+        <div class="zph_show_content">
+			<div class="zph_make">
+				<div class="zph_makelist"><img class="zph_make_ticon" src="{yun:}$wap_style{/yun}/images/zw_wyd.png" style="background:no-repeat; background-size:100%;"/>
+				可选</div>
+				<div class="zph_makelist"><img class="zph_make_ticon" src="{yun:}$wap_style{/yun}/images/zw_yyd.png" style="background:no-repeat; background-size:100%;"/>
+				不可选</div>
+				
+				<div class="zph_makelist"><img class="zph_make_ticon" src="{yun:}$wap_style{/yun}/images/zw_yxz.png" style="background:no-repeat; background-size:100%;"/> 已选</div>
+			</div>
+			
+			{yun:}foreach item=v from=$spacelist{/yun}
+			<div class="zph_show_zwname">{yun:}$v.name{/yun}</div>	
+			<div class="zph_show_zwbox">
+				{yun:}foreach item=val key=key from=$v.list{/yun}
+					{yun:}if $val.comstatus=="-1"{/yun}
+						<div class="zph_show_zwlist fairs_disp_position" aid="{yun:}$val.id{/yun}"><i class="zph_make_icon zph_make_icon_kyd"></i><div class="zph_show_zw_n">{yun:}$val.name{/yun}</div><div class="zph_show_zw_zt">可选</div></div>
+						<div class="zph_makebox" id="showstatus{yun:}$val.id{/yun}" style="display:none; position:fixed;left:50%; margin-left:-130px;top:160px; z-index:1000">
+							<div class="zph_makeboxfix">	
+								<div class="zph_make_bth_box">
+									<div class="zph_make_zw_c">
+										已选择展位：{yun:}$val.name{/yun}
+										<text class="zph_make_zw_jg">价格{yun:}if $config.com_integral_online==3{/yun}<text class="zph_make_zw_jg_n">{yun:}$val.price{/yun}</text>{yun:}$config.integral_priceunit{/yun}{yun:}$config.integral_pricename{/yun}{yun:}else{/yun}<text class="zph_make_zw_jg_n">{yun:}$val.price/$config.integral_proportion {/yun}</text>元{yun:}/if{/yun}	</text>
+									</div>
+									<a href="javascript:void(0);" onclick="clickzph('{yun:}$val.id{/yun}','{yun:}$Info.id{/yun}','{yun:}$val.price{/yun}{yun:}$config.integral_priceunit{/yun}{yun:}$config.integral_pricename{/yun}');"><text class="zph_make_bth">确认选择此展位</text></a>
+								</div>
+							</div>
+						</div>	
+					{yun:}else{/yun}
+						<div class="zph_show_zwlist fairs_disp_position1" aid="{yun:}$val.id{/yun}"><i class="zph_make_icon zph_make_icon_yyd"></i><div class="zph_show_zw_n">{yun:}$val.name{/yun}</div><div class="zph_show_zw_zt">不可选</div></div>
+						
+						<div class="zph_makebox" id="showstatus{yun:}$val.id{/yun}" style="display:none; position:fixed;left:50%; margin-left:-130px;top:160px; z-index:1000"><div class="zph_makeboxfix"><div class="zph_make_bth_box"><div class="zph_make_zw_c">
+						<a href="{yun:}url m=wap c=company a=show id=$val.uid{/yun}"> {yun:}$val.comname|mb_substr:0:14:'utf-8'{/yun} </a>已预订</div></div></div></div>			
+
+					{yun:}/if{/yun}	
+				{yun:}/foreach{/yun}
+			</div>
+			{yun:}/foreach{/yun}
+		</div>
+	</div>      
+</section>
+<input id="zph_etime" value='{yun:}$Info.etime{/yun}' type="hidden" />
+<input id="zph_stime" value='{yun:}$Info.stime{/yun}' type="hidden" />
+<script src="{yun:}$wap_style{/yun}/js/prefixfree.min.js?v={yun:}$config.cachecode{/yun}" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js?v={yun:}$config.cachecode{/yun}" language="javascript"></script>
+<script src="{yun:}$wap_style{/yun}/js/layer/layer.m.js?v={yun:}$config.cachecode{/yun}" language="javascript"></script>
+<script src="{yun:}$wap_style{/yun}/js/public.js?v={yun:}$config.cachecode{/yun}" language="javascript"></script>
+<script src="{yun:}$wap_style{/yun}/js/zph.js?v={yun:}$config.cachecode{/yun}" language="javascript"></script>
+<div style="display:none;">{yun:}include file="$wapstyle/footer.htm"{/yun}</div>

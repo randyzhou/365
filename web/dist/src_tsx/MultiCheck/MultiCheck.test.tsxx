@@ -1,0 +1,85 @@
+// TODO more tests
+import React from 'react';
+import {cleanup, fireEvent, screen, render} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { MultiCheck } from './MultiCheck';
+  
+afterEach(cleanup);
+
+describe('MultiCheck', () => {
+  describe('initialize', () => {
+    const options = [
+      { label: 'aaa', value: '111', },
+      { label: 'bbb', value: '222', },
+      { label: 'ccc', value: '333', },
+    ];
+
+    const propsData = {
+      label: 'MultiCheck123',
+      options: options,
+      columns: 4,
+      values: ['111', '333'],
+      onChange: undefined,
+      onRender: () => null
+    };
+    
+    it('renders the label if label provided', () => {     
+      const propsData = {
+        label: 'MultiCheck123',
+        options: [],
+        columns: undefined,
+        values: undefined,
+        onChange: undefined,
+        onRender: () => null
+      };
+      render(<MultiCheck {...propsData} />); 
+      expect(screen.getByText(/MultiCheck123/i)).toBeInTheDocument();
+    });
+
+    it('renders the options.label if options.label provided', () => {     
+      render(<MultiCheck {...propsData} />);
+      expect(screen.getByText(/aaa/i)).toBeInTheDocument()
+      expect(screen.getByText(/bbb/i)).toBeInTheDocument()
+      expect(screen.getByText(/ccc/i)).toBeInTheDocument()
+    });
+
+    it('The columns of checkbox input should be columns in the options', () => {      
+      render(<MultiCheck {...propsData} />);
+      const CheckboxColumns = screen.getAllByTestId("MultiCheck_Columns");
+      expect(CheckboxColumns.length).toBe(4);
+    });
+    
+    it('The value of the first checkbox input should be "all"', () => {      
+      render(<MultiCheck {...propsData} />);
+      const firstCheckboxInput = screen.getAllByRole('checkbox')[0];
+      expect(firstCheckboxInput.getAttribute('value')).toBe('all');
+      const secondCheckboxInput = screen.getAllByRole('checkbox')[1];
+      expect(secondCheckboxInput).toBeChecked();
+      const forthCheckboxInput = screen.getAllByRole('checkbox')[3];
+      expect(forthCheckboxInput).toBeChecked()
+    });
+
+    it('Unchecked checkbox should be checked after click', async () => {      
+      const user = userEvent.setup();
+      render(<MultiCheck {...propsData} />);
+      const thirdCheckboxInput = screen.getAllByRole('checkbox')[1];
+      await user.click(thirdCheckboxInput);
+      expect(thirdCheckboxInput).toBeChecked();
+    });
+
+    it('All checkbox should be checked after Select All checkbox checked', async () => {      
+      const user = userEvent.setup();
+      render(<MultiCheck {...propsData} />);
+      const firstCheckboxInput = screen.getAllByRole('checkbox')[0];
+      await user.click(firstCheckboxInput);
+      expect(firstCheckboxInput).toBeChecked();
+      const secondCheckboxInput = screen.getAllByRole('checkbox')[1];
+      expect(secondCheckboxInput).toBeChecked();
+      const thirdCheckboxInput = screen.getAllByRole('checkbox')[3];
+      expect(thirdCheckboxInput).toBeChecked();
+      const forthCheckboxInput = screen.getAllByRole('checkbox')[3];
+      expect(forthCheckboxInput).toBeChecked()
+    });
+    
+  });
+});

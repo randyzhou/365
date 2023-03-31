@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<meta name=keywords content="{yun:}$keywords{/yun}"/>
+		<meta name=description content="{yun:}$description{/yun}"/>
+		
+		<link href="{yun:}$ask_style{/yun}/style/style.css?v={yun:}$config.cachecode{/yun}" type="text/css" rel="stylesheet" />
+		
+		<title>{yun:}$title{/yun}</title>
+		
+		<script>
+			var weburl="{yun:}$config.sy_weburl{/yun}",
+				integral_pricename='{yun:}$config.integral_pricename{/yun}',
+				pricename='{yun:}$config.integral_pricename{/yun}',
+				code_web='{yun:}$config.code_web{/yun}',
+				code_kind='{yun:}$config.code_kind{/yun}';
+			function ask_head_nav(type){
+				if(type=='show'){
+					$('.yun_webMoredown').show();
+				}else{
+					$('.yun_webMoredown').hide();
+				}
+			}
+		</script>
+	</head>
+<body>
+
+<div class="top_lietou">
+  	<div class="top_cot">
+    	<div class="top_cot_content">
+      		<div class="top_left fl">
+        		<div class="yun_welcome fl">欢迎来到{yun:}$config.sy_webname{/yun}！</div>
+      		</div>
+      		<div class="top_right_re fr">
+        		<div class="top_right">
+          			<div class="yun_topNav fr" onMouseOver="ask_head_nav('show')" onMouseOut="ask_head_nav('hide')"> 
+		  				<a class="yun_navMore" href="javascript:;">网站导航</a>
+           				<div class="yun_webMoredown none">
+              				<div class="yun_top_nav_box"> 
+			  					<ul class="yun_top_nav_box_l">
+				              		{yun:}navmap key=key item=maplist{/yun}
+				                  	<li><a href="{yun:}$maplist.url{/yun}" {yun:}if $maplist.eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$maplist.name{/yun}</a></li>
+				                	{yun:}/navmap{/yun} 
+                 				</ul>
+                				<ul class="yun_top_nav_box_wx">
+					               	{yun:}nav item=navlist_app hovclass=nav_list_hover nid=11{/yun}          
+					            	<li> <a class="move_0{yun:}$navlist_app.sort{/yun}"{yun:}if $navlist_app.eject{/yun} target="_blank"{yun:}/if{/yun} href="{yun:}$config.sy_weburl{/yun}/{yun:}$navlist_app.url{/yun}">{yun:}$navlist_app.name{/yun}</a> </li>
+					          		{yun:}/nav{/yun}
+                				</ul>
+                			</div>
+            			</div>
+          			</div> 
+           			<script language='JavaScript' src='{yun:}url m=ajax c=RedLoginHead{/yun}'></script> 
+        		</div>
+      		</div>
+    	</div>
+  	</div>
+</div>	
+
+<div class="clear"></div>
+
+<div class="ask_header">
+	<div class="ask_header_cont">
+		<div class="logo fl"><a href="{yun:}$config.sy_weburl{/yun}"><img class="png" src="{yun:}$config.sy_ossurl{/yun}/{yun:}$config.sy_logo{/yun}" /></a></div>
+		<span class="ask_by">职场问答</span>
+
+		<div class="ask_header_nav_cont"> 
+			<ul> 
+				<li {yun:}if $navtype==''{/yun}class="cur"{yun:}/if{/yun}><a href="{yun:}url m=ask{/yun}">首页</a></li>
+				<li {yun:}if $navtype=='topic'{/yun}class="cur"{yun:}/if{/yun}><a href="{yun:}url m=ask c=topic{/yun}">话题</a></li>
+				<li {yun:}if $navtype=='hotweek'{/yun}class="cur"{yun:}/if{/yun}><a href="{yun:}url m=ask c=hotweek{/yun}">一周热点</a></li>	 
+				{yun:}if $uid && ($smarty.get.uid=='' || $smarty.get.uid==$uid){/yun} 
+				<li {yun:}if $smarty.get.c=='friend'{/yun}class="cur"{yun:}/if{/yun}><a href="{yun:}url m=ask c=friend a=myquestion type='types' uid=$uid{/yun}">我的主页</a></li> 
+				{yun:}elseif $smarty.get.uid{/yun}
+				<li {yun:}if $smarty.get.c=='friend'{/yun}class="cur"{yun:}/if{/yun}><a href="{yun:}url m=ask c=friend a=myquestion uid=$smarty.get.uid{/yun}">他的主页</a></li>
+				{yun:}/if{/yun}
+				<li><a href="{yun:}$config.sy_weburl{/yun}">进入人才网首页</a></li>
+			</ul> 
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+ 
